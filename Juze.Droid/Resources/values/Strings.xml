@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="ApplicationName">Juze</string>
+  <string name="JuzeName">Juze App Name</string>
+  <string name="CreateFlavor">Create Flavor</string>
+  <string name="EditFlavor">Edit Flavor</string>
+  <string name="FlavorName">Name</string>
+  <string name="CreateFlavorCanceled">Canceled Flavor Creation</string>
+  <string name="PGBased">PG</string>
+</resources>
