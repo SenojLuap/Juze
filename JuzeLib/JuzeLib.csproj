@@ -3,10 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
     <RootNamespace>paujo.juze</RootNamespace>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <Description>Library of core types/functionality for Juze applications</Description>
+    <Company>paujo</Company>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
