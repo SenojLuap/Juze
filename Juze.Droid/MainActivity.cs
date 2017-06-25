@@ -46,7 +46,7 @@ namespace paujo.juze.android {
       Flavor testFlav = new Flavor();
       testFlav.Name = "CAP Sweet Cream";
       testFlav.PG = true;
-      testFlav.RecommendedPercentage = 5.0f;
+      testFlav.RecommendedPercentage = .05f;
       testFlav.ID = 1;
 
       string payload = JsonConvert.SerializeObject(testFlav);
@@ -65,7 +65,7 @@ namespace paujo.juze.android {
       if (requestCode == CREATE_FLAVOR_REQUEST) {
         if (resultCode == Result.Ok) {
           Flavor resultFlavor = JsonConvert.DeserializeObject<Flavor>(data.GetStringExtra(Constants.FLAVOR_TYPE_KEY));
-          Toast.MakeText(ApplicationContext, "Created: " + resultFlavor.Name + " (" + (resultFlavor.PG ? "PG)" : "VG)"), ToastLength.Short).Show();
+          Toast.MakeText(ApplicationContext, "Created: " + resultFlavor.Name + " (" + (resultFlavor.PG ? "PG)" : "VG)") + " %" + (resultFlavor.RecommendedPercentage * 100f), ToastLength.Short).Show();
         }
       }
     }

@@ -8,4 +8,5 @@
   <string name="FlavorName">Name</string>
   <string name="CreateFlavorCanceled">Canceled Flavor Creation</string>
   <string name="PGBased">PG</string>
+  <string name="RecPercent">Rec. %</string>
 </resources>

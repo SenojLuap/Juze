@@ -10,6 +10,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
+using Java.Text;
+using Java.Util;
+
 using Com.Lilarcor.Cheeseknife;
 using Newtonsoft.Json;
 
@@ -18,10 +21,13 @@ namespace paujo.juze.android {
   public class CreateFlavor : Activity {
 
     [InjectView(Resource.Id.cfNameField)]
-    public TextView nameField;
+    public EditText nameField;
 
     [InjectView(Resource.Id.cfPGBtn)]
     public CheckBox pgBtn;
+
+    [InjectView(Resource.Id.cfRecPercField)]
+    public EditText recPercField;
 
     protected override void OnCreate(Bundle savedInstanceState) {
       base.OnCreate(savedInstanceState);
@@ -32,6 +38,7 @@ namespace paujo.juze.android {
       Flavor flav = JsonConvert.DeserializeObject<Flavor>(Intent.GetStringExtra(Constants.FLAVOR_TYPE_KEY));
       nameField.Text = flav.Name;
       pgBtn.Checked = flav.PG;
+      recPercField.Text = (flav.RecommendedPercentage * 100f).ToString();
     }
 
 
@@ -59,6 +66,8 @@ namespace paujo.juze.android {
       Flavor res = new Flavor();
       res.Name = nameField.Text;
       res.PG = pgBtn.Checked;
+      res.RecommendedPercentage = float.Parse(recPercField.Text) / 100f;
+
       return res;
     }
   }

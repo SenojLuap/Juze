@@ -62,6 +62,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="XamSvg.Droid, Version=2.3.2.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Softlion.XamSvg.Free.2.3.2.5\lib\MonoAndroid44\XamSvg.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="XamSvg.Shared, Version=2.3.2.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Softlion.XamSvg.Free.2.3.2.5\lib\MonoAndroid44\XamSvg.Shared.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
@@ -98,6 +104,9 @@
       <Project>{6eb5f487-8182-40fd-ac8b-2b1b2a608fb3}</Project>
       <Name>JuzeLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\drawable\flavorBottle.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,6 +12,7 @@ namespace paujo.juze {
       get; set;
     }
 
+
     /// <summary>
     /// Human-readable name of the flavor.
     /// </summary>
