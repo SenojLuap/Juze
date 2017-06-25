@@ -1,7 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
-
-namespace paujo.juze {
+﻿namespace paujo.juze {
   public class Flavor {
 
 

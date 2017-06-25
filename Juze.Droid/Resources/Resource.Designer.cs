@@ -26,36 +26,10 @@ namespace paujo.juze.android
 		
 		public static void UpdateIdValues()
 		{
-			global::XamSvg.Resource.Attribute.colorMapping = global::paujo.juze.android.Resource.Attribute.colorMapping;
-			global::XamSvg.Resource.Attribute.colorMappingSelected = global::paujo.juze.android.Resource.Attribute.colorMappingSelected;
-			global::XamSvg.Resource.Attribute.loadAsync = global::paujo.juze.android.Resource.Attribute.loadAsync;
-			global::XamSvg.Resource.Attribute.svg = global::paujo.juze.android.Resource.Attribute.svg;
-			global::XamSvg.Resource.Attribute.traceEnabled = global::paujo.juze.android.Resource.Attribute.traceEnabled;
-			global::XamSvg.Resource.Styleable.SvgImageView = global::paujo.juze.android.Resource.Styleable.SvgImageView;
-			global::XamSvg.Resource.Styleable.SvgImageView_colorMapping = global::paujo.juze.android.Resource.Styleable.SvgImageView_colorMapping;
-			global::XamSvg.Resource.Styleable.SvgImageView_colorMappingSelected = global::paujo.juze.android.Resource.Styleable.SvgImageView_colorMappingSelected;
-			global::XamSvg.Resource.Styleable.SvgImageView_loadAsync = global::paujo.juze.android.Resource.Styleable.SvgImageView_loadAsync;
-			global::XamSvg.Resource.Styleable.SvgImageView_svg = global::paujo.juze.android.Resource.Styleable.SvgImageView_svg;
-			global::XamSvg.Resource.Styleable.SvgImageView_traceEnabled = global::paujo.juze.android.Resource.Styleable.SvgImageView_traceEnabled;
 		}
 		
 		public partial class Attribute
 		{
-			
-			// aapt resource value: 0x7f010001
-			public const int colorMapping = 2130771969;
-			
-			// aapt resource value: 0x7f010002
-			public const int colorMappingSelected = 2130771970;
-			
-			// aapt resource value: 0x7f010004
-			public const int loadAsync = 2130771972;
-			
-			// aapt resource value: 0x7f010000
-			public const int svg = 2130771968;
-			
-			// aapt resource value: 0x7f010003
-			public const int traceEnabled = 2130771971;
 			
 			static Attribute()
 			{
@@ -184,41 +158,6 @@ namespace paujo.juze.android
 			}
 			
 			private String()
-			{
-			}
-		}
-		
-		public partial class Styleable
-		{
-			
-			public static int[] SvgImageView = new int[] {
-					2130771968,
-					2130771969,
-					2130771970,
-					2130771971,
-					2130771972};
-			
-			// aapt resource value: 1
-			public const int SvgImageView_colorMapping = 1;
-			
-			// aapt resource value: 2
-			public const int SvgImageView_colorMappingSelected = 2;
-			
-			// aapt resource value: 4
-			public const int SvgImageView_loadAsync = 4;
-			
-			// aapt resource value: 0
-			public const int SvgImageView_svg = 0;
-			
-			// aapt resource value: 3
-			public const int SvgImageView_traceEnabled = 3;
-			
-			static Styleable()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Styleable()
 			{
 			}
 		}
