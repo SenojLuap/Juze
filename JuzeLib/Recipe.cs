@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using SQLite;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Newtonsoft.Json;
 
-namespace paujo.juze
-{
+namespace paujo.juze {
   public class Recipe {
     
 
     /// <summary>
     /// Unique ID for the recipe.
     /// </summary>
-    [PrimaryKey, AutoIncrement]
     public int ID {
       get; set;
     }
