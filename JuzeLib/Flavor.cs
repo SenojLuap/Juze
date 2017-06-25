@@ -1,13 +1,14 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using SQLite;
 
-namespace paujo.juze {
+namespace paujo.juze
+{
   public class Flavor {
 
 
     /// <summary>
     /// Unique ID for the flavor.
     /// </summary>
+    [PrimaryKey, AutoIncrement]
     public int ID {
       get; set;
     }

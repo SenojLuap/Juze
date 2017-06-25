@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SQLite;
 
 namespace paujo.juze {
   public class Nicotine {
@@ -9,6 +7,7 @@ namespace paujo.juze {
     /// <summary>
     /// Unique ID for the nicotine.
     /// </summary>
+    [PrimaryKey, AutoIncrement]
     public int ID {
       get; set;
     }
