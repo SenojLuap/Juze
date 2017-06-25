@@ -7,10 +7,11 @@ using System;
 using Com.Lilarcor.Cheeseknife;
 using Android.Content;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace paujo.juze.android {
   [Activity(Label = "@+string/JuzeName", MainLauncher = true, Icon = "@drawable/icon")]
-  public class MainActivity : Activity {
+  public partial class MainActivity : Activity {
 
     /// <summary>
     /// Request code for creating a new flavor.
@@ -29,6 +30,7 @@ namespace paujo.juze.android {
       SetContentView(Resource.Layout.Main);
 
       Cheeseknife.Inject(this);
+
     }
 
 
@@ -55,6 +57,12 @@ namespace paujo.juze.android {
       StartActivityForResult(flavIntent, CREATE_FLAVOR_REQUEST);
     }
 
+    [InjectOnClick(Resource.Id.mDumpFlavorCountBtn)]
+    public void DumpFlavorsClick(Object caller, EventArgs args) {
+      IList<Flavor> flavors = GetAllFlavors();
+      Toast.MakeText(ApplicationContext, "Count: " + flavors.Count, ToastLength.Short).Show();
+    }
+
     /// <summary>
     /// Called when an activity returns with a result.
     /// </summary>
@@ -65,7 +73,10 @@ namespace paujo.juze.android {
       if (requestCode == CREATE_FLAVOR_REQUEST) {
         if (resultCode == Result.Ok) {
           Flavor resultFlavor = JsonConvert.DeserializeObject<Flavor>(data.GetStringExtra(Constants.FLAVOR_TYPE_KEY));
+          var rand = new Random();
+          resultFlavor.ID = rand.Next();
           Toast.MakeText(ApplicationContext, "Created: " + resultFlavor.Name + " (" + (resultFlavor.PG ? "PG)" : "VG)") + " %" + (resultFlavor.RecommendedPercentage * 100f), ToastLength.Short).Show();
+          PutFlavor(resultFlavor);
         }
       }
     }

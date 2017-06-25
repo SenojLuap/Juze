@@ -93,6 +93,9 @@ namespace paujo.juze.android
 			// aapt resource value: 0x7f05000a
 			public const int mCreateFlavorBtn = 2131034122;
 			
+			// aapt resource value: 0x7f05000b
+			public const int mDumpFlavorCountBtn = 2131034123;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
