@@ -25,6 +25,14 @@ namespace paujo.juze.android {
       MenuInflater.Inflate(Resource.Layout.FlavorListMenu, menu);
       return base.OnCreateOptionsMenu(menu);
     }
+
+    /// <summary>
+    /// Remove the flavor from the database.
+    /// </summary>
+    /// <param name="toRemove"></param>
+    public void RemoveFlavor(Flavor toRemove) {
+      Toast.MakeText(ApplicationContext, "Removed: " + toRemove.Name + " (but not really)", ToastLength.Short).Show();
+    }
   }
 
 
@@ -38,7 +46,7 @@ namespace paujo.juze.android {
     /// <summary>
     /// The activity that owns the ListView.
     /// </summary>
-    public Activity context;
+    public FlavorListActivity context;
 
     /// <summary>
     /// Retreives a flavor, by index.
@@ -65,7 +73,7 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="context">The activity that owns the ListView.</param>
     /// <param name="flavorList">The list of flavors to be represented.</param>
-    public FlavorListAdapter(Activity context) : base() {
+    public FlavorListAdapter(FlavorListActivity context) : base() {
       this.context = context;
       DatabaseHelper helper = new DatabaseHelper(context.ApplicationContext);
       this.flavors = helper.GetFlavors();
@@ -92,10 +100,14 @@ namespace paujo.juze.android {
       if (res == null) {
         res = context.LayoutInflater.Inflate(Resource.Layout.FlavorListRow, null);
       }
-      res.FindViewById<TextView>(Resource.Id.lfrText).Text = flavors[position].Name;
-      Console.WriteLine("" + parent.GetType());
+      Flavor flavor = flavors[position];
+      res.FindViewById<TextView>(Resource.Id.lfrText).Text = flavor.Name;
+      res.FindViewById<ImageButton>(Resource.Id.lfrRemoveBtn).Click += delegate {
+        context.RemoveFlavor(flavor);
+      };
 
       return res;
     }
+
   }
 }

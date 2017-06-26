@@ -5,7 +5,7 @@
   <item android:id="@+id/flCreateFlavor"
     android:showAsAction="ifRoom"
     android:text="@+string/CreateFlavor"
-    android:icon="@+drawable/ic_add_circle_white_24dp"/>
+    android:icon="@android:drawable/ic_menu_add"/>
   
 </menu>
 

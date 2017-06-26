@@ -81,9 +81,6 @@
     <AndroidResource Include="Resources\layout\CreateFlavor.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\FlavorListLayout.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\FlavorListRow.axml" />
   </ItemGroup>
   <ItemGroup>
