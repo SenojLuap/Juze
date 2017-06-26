@@ -57,10 +57,26 @@ namespace paujo.juze.android {
       StartActivityForResult(flavIntent, CREATE_FLAVOR_REQUEST);
     }
 
+    /// <summary>
+    /// DEBUG: Dumps number of flavors in the database.
+    /// </summary>
+    /// <param name="caller"></param>
+    /// <param name="args"></param>
     [InjectOnClick(Resource.Id.mDumpFlavorCountBtn)]
     public void DumpFlavorsClick(Object caller, EventArgs args) {
       IList<Flavor> flavors = GetAllFlavors();
       Toast.MakeText(ApplicationContext, "Count: " + flavors.Count, ToastLength.Short).Show();
+    }
+
+    /// <summary>
+    /// Switches to 'Flavor List' activity.
+    /// </summary>
+    /// <param name="caller"></param>
+    /// <param name="args"></param>
+    [InjectOnClick(Resource.Id.mListFlavorsBtn)]
+    public void StartFlavorListActivity(Object caller, EventArgs args) {
+      Intent listIntent = new Intent(this, typeof(FlavorListActivity));
+      StartActivity(listIntent);
     }
 
     /// <summary>
