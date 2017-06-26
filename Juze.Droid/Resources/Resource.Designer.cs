@@ -48,7 +48,10 @@ namespace paujo.juze.android
 			public const int ic_add_circle_white_24dp = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int Icon = 2130837505;
+			public const int ic_clear_white_18dp = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int Icon = 2130837506;
 			
 			static Drawable()
 			{
@@ -100,13 +103,19 @@ namespace paujo.juze.android
 			public const int lfListView = 2131034122;
 			
 			// aapt resource value: 0x7f05000d
-			public const int mCreateFlavorBtn = 2131034125;
-			
-			// aapt resource value: 0x7f05000e
-			public const int mDumpFlavorCountBtn = 2131034126;
+			public const int lfrRemoveBtn = 2131034125;
 			
 			// aapt resource value: 0x7f05000c
-			public const int mListFlavorsBtn = 2131034124;
+			public const int lfrText = 2131034124;
+			
+			// aapt resource value: 0x7f05000f
+			public const int mCreateFlavorBtn = 2131034127;
+			
+			// aapt resource value: 0x7f050010
+			public const int mDumpFlavorCountBtn = 2131034128;
+			
+			// aapt resource value: 0x7f05000e
+			public const int mListFlavorsBtn = 2131034126;
 			
 			static Id()
 			{
@@ -131,7 +140,10 @@ namespace paujo.juze.android
 			public const int FlavorListMenu = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int Main = 2130903043;
+			public const int FlavorListRow = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int Main = 2130903044;
 			
 			static Layout()
 			{
