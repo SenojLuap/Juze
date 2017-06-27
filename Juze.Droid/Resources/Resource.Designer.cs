@@ -100,10 +100,7 @@ namespace paujo.juze.android
 			public const int lfrText = 2131034123;
 			
 			// aapt resource value: 0x7f05000e
-			public const int mCreateFlavorBtn = 2131034126;
-			
-			// aapt resource value: 0x7f05000f
-			public const int mDumpFlavorCountBtn = 2131034127;
+			public const int mDumpFlavorCountBtn = 2131034126;
 			
 			// aapt resource value: 0x7f05000d
 			public const int mListFlavorsBtn = 2131034125;
@@ -154,6 +151,9 @@ namespace paujo.juze.android
 			
 			// aapt resource value: 0x7f040006
 			public const int CreateFlavorCanceled = 2130968582;
+			
+			// aapt resource value: 0x7f040009
+			public const int DefaultFlavorName = 2130968585;
 			
 			// aapt resource value: 0x7f040004
 			public const int EditFlavor = 2130968580;

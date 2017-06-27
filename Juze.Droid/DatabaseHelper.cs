@@ -40,7 +40,7 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="db">The database the table should be added to.</param>
     public void CreateFlavorTable(SQLiteDatabase db) {
-      string cmd = $@"CREATE TABLE {FLAVOR_TABLE_NAME} (ID INTEGER PRIMARY KEY, NAME TEXT, PG INTEGER, REC_PER REAL)";
+      string cmd = $@"CREATE TABLE {FLAVOR_TABLE_NAME} (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, PG INTEGER, REC_PER REAL)";
       db.ExecSQL(cmd);
     }
 
@@ -52,7 +52,7 @@ namespace paujo.juze.android {
       Console.WriteLine("Put Flavor");
       int pg = flavor.PG ? 1 : 0;
       try {
-        string cmd = $"INSERT INTO {FLAVOR_TABLE_NAME} VALUES ({flavor.ID}, \"{flavor.Name}\", {pg}, {flavor.RecommendedPercentage});";
+        string cmd = $"INSERT INTO {FLAVOR_TABLE_NAME} (NAME, PG, REC_PER) VALUES (\"{flavor.Name}\", {pg}, {flavor.RecommendedPercentage});";
         Console.WriteLine(cmd);
         WritableDatabase.ExecSQL(cmd);
       } catch (SQLiteAbortException e) {

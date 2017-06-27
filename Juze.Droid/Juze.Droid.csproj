@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="CreateFlavor.cs" />
+    <Compile Include="CreateFlavorActivity.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="FlavorListActivity.cs" />
     <Compile Include="MainActivity.cs" />

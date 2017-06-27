@@ -17,8 +17,8 @@ using Com.Lilarcor.Cheeseknife;
 using Newtonsoft.Json;
 
 namespace paujo.juze.android {
-  [Activity(Label = "@+string/CreateFlavor", ParentActivity = typeof(MainActivity))]
-  public class CreateFlavor : Activity {
+  [Activity(Label = "@+string/CreateFlavor", ParentActivity = typeof(FlavorListActivity))]
+  public class CreateFlavorActivity : Activity {
 
     [InjectView(Resource.Id.cfNameField)]
     public EditText nameField;
@@ -35,10 +35,9 @@ namespace paujo.juze.android {
       SetContentView(Resource.Layout.CreateFlavor);
       Cheeseknife.Inject(this);
 
-      Flavor flav = JsonConvert.DeserializeObject<Flavor>(Intent.GetStringExtra(Constants.FLAVOR_TYPE_KEY));
-      nameField.Text = flav.Name;
-      pgBtn.Checked = flav.PG;
-      recPercField.Text = (flav.RecommendedPercentage * 100f).ToString();
+      nameField.Text = Resources.GetString(Resource.String.DefaultFlavorName);
+      pgBtn.Checked = true;
+      recPercField.Text = "5.0";
     }
 
 
@@ -49,11 +48,13 @@ namespace paujo.juze.android {
     /// <param name="args">Extra arguments about the event.</param>
     [InjectOnClick(Resource.Id.cfCreateBtn)]
     public void OnCreateClick(Object caller, EventArgs args) {
-      Intent resultIntent = new Intent();
       Flavor toReturn = CollectFlavorData();
-      string payload = JsonConvert.SerializeObject(toReturn);
-      resultIntent.PutExtra(Constants.FLAVOR_TYPE_KEY, payload);
-      SetResult(Result.Ok, resultIntent);
+      DatabaseHelper helper = new DatabaseHelper(ApplicationContext);
+      helper.PutFlavor(toReturn);
+      Intent returnInfo = new Intent();
+      returnInfo.PutExtra("user_accept", true);
+      SetResult(Result.Ok, returnInfo);
+
       Finish();
     }
 

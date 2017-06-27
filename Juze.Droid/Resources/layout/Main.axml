@@ -12,12 +12,6 @@
         android:id="@+id/mListFlavorsBtn"
         android:layout_gravity="center" />
     <Button
-        android:text="@+string/CreateFlavor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mCreateFlavorBtn"
-        android:layout_gravity="center" />
-    <Button
         android:text="Dump Flavor Count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
