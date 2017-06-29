@@ -19,5 +19,11 @@ namespace paujo.juze {
     /// Gravity of pure nicotine, in g/mL
     /// </summary>
     public const float NICOTINE_GRAVITY = 1.01f;
+
+    /// <summary>
+    /// The version of the interface for JuzeLib.
+    /// Only incremented on interface change.
+    /// </summary>
+    public const int SCHEMA_VERSION = 1;
   }
 }

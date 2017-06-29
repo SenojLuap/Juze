@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cfMainLayout">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cfControlLayout"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:columnCount="2">
+            <TextView
+                android:text="@+string/FlavorName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/cfNameLabel"
+                android:layout_marginRight="10dp"
+                android:labelFor="@+id/cfNameField" />
+            <EditText
+                android:id="@+id/cfNameField"
+                android:lines="1"
+                android:maxLines="1"
+                android:inputType="textAutoCorrect"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="10dp" />
+            <TextView
+                android:text="@+string/PGBased"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/cfPGLabel"
+                android:labelFor="@+id/cfPFBtn" />
+            <CheckBox
+                android:id="@+id/cfPGBtn"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp" />
+            <TextView
+                android:text="@+string/RecPercent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/cfRecPercLabel"
+                android:labelFor="@+id/cfRecPercField" />
+            <EditText
+                android:inputType="numberDecimal"
+                android:id="@+id/cfRecPercField"
+                android:layout_columnWeight="1" />
+        </GridLayout>
+        <Button
+            android:text="@+string/UpdateFlavor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cfCreateBtn"
+            android:layout_margin="20dp"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
+</LinearLayout>

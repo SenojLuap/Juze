@@ -70,7 +70,12 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="toRemove"></param>
     public void RemoveFlavor(Flavor toRemove) {
-      Toast.MakeText(ApplicationContext, "Removed: " + toRemove.Name + " (but not really)", ToastLength.Short).Show();
+      Toast.MakeText(ApplicationContext, "Removed: " + toRemove.Name, ToastLength.Short).Show();
+      DatabaseHelper helper = new DatabaseHelper(ApplicationContext);
+      helper.RemoveFlavor(toRemove);
+      FlavorListAdapter adapter = ListAdapter as FlavorListAdapter;
+      if (adapter != null)
+        adapter.Reset();
     }
   }
 

@@ -9,22 +9,13 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Database;
 using Android.Database.Sqlite;
 
 namespace paujo.juze.android {
   public class DatabaseHelper : SQLiteOpenHelper {
 
-    /// <summary>
-    /// The current version of the database.
-    /// </summary>
-    public const int JUZE_DB_VERSION = 1;
-
-    /// <summary>
-    /// The name of the table that contains flavors.
-    /// </summary>
-    public const string FLAVOR_TABLE_NAME = "FLAVOR";
-
-    public DatabaseHelper(Context context) : base(context, "juze.db", null, JUZE_DB_VERSION) {
+    public DatabaseHelper(Context context) : base(context, "juze.db", null, paujo.juze.Constants.SCHEMA_VERSION) {
     }
 
     /// <summary>
@@ -40,8 +31,7 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="db">The database the table should be added to.</param>
     public void CreateFlavorTable(SQLiteDatabase db) {
-      string cmd = $@"CREATE TABLE {FLAVOR_TABLE_NAME} (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, PG INTEGER, REC_PER REAL)";
-      db.ExecSQL(cmd);
+      db.ExecSQL(Flavor.CreateTableCommand);
     }
 
     /// <summary>
@@ -49,12 +39,32 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="flavor">The flavor being added.</param>
     public void PutFlavor(Flavor flavor) {
-      Console.WriteLine("Put Flavor");
-      int pg = flavor.PG ? 1 : 0;
       try {
-        string cmd = $"INSERT INTO {FLAVOR_TABLE_NAME} (NAME, PG, REC_PER) VALUES (\"{flavor.Name}\", {pg}, {flavor.RecommendedPercentage});";
-        Console.WriteLine(cmd);
-        WritableDatabase.ExecSQL(cmd);
+        WritableDatabase.ExecSQL(flavor.InsertCommand);
+      } catch (SQLiteAbortException e) {
+        Console.WriteLine(e.Message);
+      }
+    }
+
+    /// <summary>
+    /// Update an existing flavor in the database.
+    /// </summary>
+    /// <param name="flavor">The flavor to be updated.</param>
+    public void UpdateFlavor(Flavor flavor) {
+      try {
+        WritableDatabase.ExecSQL(flavor.UpdateCommand);
+      } catch (SQLiteAbortException e) {
+        Console.WriteLine(e.Message);
+      }
+    }
+
+    /// <summary>
+    /// Remove the flavor from the database.
+    /// </summary>
+    /// <param name="flavor"></param>
+    public void RemoveFlavor(Flavor flavor) {
+      try {
+        WritableDatabase.ExecSQL(flavor.DeleteCommand);
       } catch (SQLiteAbortException e) {
         Console.WriteLine(e.Message);
       }
@@ -66,15 +76,18 @@ namespace paujo.juze.android {
     /// <returns>The collection of all flavors currently in the database.</returns>
     public IList<Flavor> GetFlavors() {
       Console.WriteLine("Get flavors");
-      var iter = ReadableDatabase.Query(FLAVOR_TABLE_NAME, new string[] { "ID", "NAME", "PG", "REC_PER" }, null, null, null, null, null);
+
       List<Flavor> res = new List<Flavor>();
+      ICursor iter = ReadableDatabase.RawQuery(Flavor.ListCommand, null);
+      int colCount = iter.ColumnCount;
+
       while (iter.MoveToNext()) {
-        Flavor newFlavor = new Flavor();
-        newFlavor.ID = iter.GetInt(0);
-        newFlavor.Name = iter.GetString(1);
-        newFlavor.PG = (iter.GetInt(2) > 0 ? true : false);
-        newFlavor.RecommendedPercentage = iter.GetFloat(3);
-        res.Add(newFlavor);
+        string[] columns = new string[colCount];
+        for (int i = 0; i < colCount; i++)
+          columns[i] = iter.GetString(i);
+        Flavor newFlavor = Flavor.ParseFromQueryResult(columns);
+        if (newFlavor != null)
+          res.Add(newFlavor);
       }
       iter.Close();
       return res;
