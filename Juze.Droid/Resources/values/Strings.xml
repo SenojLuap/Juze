@@ -10,4 +10,6 @@
   <string name="PGBased">PG</string>
   <string name="RecPercent">Rec. %</string>
   <string name="DefaultFlavorName">\u003c Enter Flavor Name \u003e</string>
+  <string name="EditFlavor">Edit Flavor</string>
+  <string name="UpdateFlavor">Update</string>
 </resources>

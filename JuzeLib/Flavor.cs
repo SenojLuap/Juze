@@ -79,7 +79,7 @@ namespace paujo.juze {
     public string UpdateCommand {
       get {
         int pg = PG ? 1 : 0;
-          return $"UPDATE {TABLE_NAME} SET {NAME_COL}=\"{Name}\", {PG_COL}={pg}, {RECPER_COL}={RecommendedPercentage} WHERE {ID_COL} = {ID};";
+        return $"UPDATE {TABLE_NAME} SET {NAME_COL}=\"{Name}\", {PG_COL}={pg}, {RECPER_COL}={RecommendedPercentage} WHERE {ID_COL} = {ID};";
       }
     }
 

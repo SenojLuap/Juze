@@ -9,11 +9,11 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/cfMainLayout">
+        android:id="@+id/efMainLayout">
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cfControlLayout"
+            android:id="@+id/efControlLayout"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -22,11 +22,11 @@
             <TextView
                 android:text="@+string/FlavorName"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/cfNameLabel"
+                android:id="@+id/efNameLabel"
                 android:layout_marginRight="10dp"
-                android:labelFor="@+id/cfNameField" />
+                android:labelFor="@+id/efNameField" />
             <EditText
-                android:id="@+id/cfNameField"
+                android:id="@+id/efNameField"
                 android:lines="1"
                 android:maxLines="1"
                 android:inputType="textAutoCorrect"
@@ -35,27 +35,27 @@
             <TextView
                 android:text="@+string/PGBased"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/cfPGLabel"
-                android:labelFor="@+id/cfPFBtn" />
+                android:id="@+id/efPGLabel"
+                android:labelFor="@+id/efPFBtn" />
             <CheckBox
-                android:id="@+id/cfPGBtn"
+                android:id="@+id/efPGBtn"
                 android:layout_columnWeight="1"
                 android:layout_marginBottom="5dp" />
             <TextView
                 android:text="@+string/RecPercent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/cfRecPercLabel"
-                android:labelFor="@+id/cfRecPercField" />
+                android:id="@+id/efRecPercLabel"
+                android:labelFor="@+id/efRecPercField" />
             <EditText
                 android:inputType="numberDecimal"
-                android:id="@+id/cfRecPercField"
+                android:id="@+id/efRecPercField"
                 android:layout_columnWeight="1" />
         </GridLayout>
         <Button
             android:text="@+string/UpdateFlavor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cfCreateBtn"
+            android:id="@+id/efUpdateBtn"
             android:layout_margin="20dp"
             android:layout_gravity="bottom" />
     </LinearLayout>

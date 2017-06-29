@@ -51,9 +51,9 @@ namespace paujo.juze.android {
       Flavor toReturn = CollectFlavorData();
       DatabaseHelper helper = new DatabaseHelper(ApplicationContext);
       helper.PutFlavor(toReturn);
-      Intent returnInfo = new Intent();
-      returnInfo.PutExtra("user_accept", true);
-      SetResult(Result.Ok, returnInfo);
+      //Intent returnInfo = new Intent();
+      //returnInfo.PutExtra("user_accept", true);
+      SetResult(Result.Ok, null);
 
       Finish();
     }

@@ -20,13 +20,13 @@ namespace paujo.juze.android {
   [Activity(Label = "@+string/EditFlavor", ParentActivity = typeof(FlavorListActivity))]
   public class EditFlavorActivity : Activity {
 
-    [InjectView(Resource.Id.cfNameField)]
+    [InjectView(Resource.Id.efNameField)]
     public EditText nameField;
 
-    [InjectView(Resource.Id.cfPGBtn)]
+    [InjectView(Resource.Id.efPGBtn)]
     public CheckBox pgBtn;
 
-    [InjectView(Resource.Id.cfRecPercField)]
+    [InjectView(Resource.Id.efRecPercField)]
     public EditText recPercField;
 
     /// <summary>
@@ -37,7 +37,7 @@ namespace paujo.juze.android {
     protected override void OnCreate(Bundle savedInstanceState) {
       base.OnCreate(savedInstanceState);
 
-      SetContentView(Resource.Layout.CreateFlavor);
+      SetContentView(Resource.Layout.EditFlavor);
       Cheeseknife.Inject(this);
 
       flavor = JsonConvert.DeserializeObject<Flavor>(Intent.GetStringExtra("flavor_data"));
@@ -47,36 +47,31 @@ namespace paujo.juze.android {
       recPercField.Text = (flavor.RecommendedPercentage * 100.0f).ToString();
     }
 
-
     /// <summary>
-    /// Called when the 'Create Flavor' button is clicked.
+    /// Called when the 'Update' button is clicked.
     /// </summary>
     /// <param name="caller">The button that triggered the event.</param>
     /// <param name="args">Extra arguments about the event.</param>
-    [InjectOnClick(Resource.Id.cfCreateBtn)]
-    public void OnCreateClick(Object caller, EventArgs args) {
-      Flavor toReturn = CollectFlavorData();
+    [InjectOnClick(Resource.Id.efUpdateBtn)]
+    public void OnUpdateClick(Object caller, EventArgs args) {
+      Flavor toUpdate = CollectFlavorData();
       DatabaseHelper helper = new DatabaseHelper(ApplicationContext);
-      helper.PutFlavor(toReturn);
-      Intent returnInfo = new Intent();
-      returnInfo.PutExtra("user_accept", true);
-      SetResult(Result.Ok, returnInfo);
+      helper.UpdateFlavor(toUpdate);
+      SetResult(Result.Ok, null);
 
       Finish();
     }
-
 
     /// <summary>
     /// Called to collect data from the fields to build a Flavor.
     /// </summary>
     /// <returns>A Flavor built from the fields.</returns>
     public Flavor CollectFlavorData() {
-      Flavor res = new Flavor();
-      res.Name = nameField.Text;
-      res.PG = pgBtn.Checked;
-      res.RecommendedPercentage = float.Parse(recPercField.Text) / 100f;
+      flavor.Name = nameField.Text;
+      flavor.PG = pgBtn.Checked;
+      flavor.RecommendedPercentage = float.Parse(recPercField.Text) / 100f;
 
-      return res;
+      return flavor;
     }
 
     /// <summary>
