@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace paujo.juze.android {
   public class FlavorListFragment : ListFragment {
@@ -106,6 +107,8 @@ namespace paujo.juze.android {
     /// </summary>
     public FlavorListFragment context;
 
+    public Stopwatch clickTimer;
+
     /// <summary>
     /// Retreives a flavor, by index.
     /// </summary>
@@ -162,10 +165,16 @@ namespace paujo.juze.android {
       var labelBtn = res.FindViewById<Button>(Resource.Id.lfrText);
       labelBtn.Text = flavor.Name;
       labelBtn.Click += delegate {
-        context.EditFlavor(flavor);
+        if (Debounce())
+          context.EditFlavor(flavor);
+        else
+          Console.WriteLine("Bounce!");
       };
       res.FindViewById<ImageButton>(Resource.Id.lfrRemoveBtn).Click += delegate {
-        context.RemoveFlavor(flavor);
+        if (Debounce())
+          context.RemoveFlavor(flavor);
+        else
+          Console.WriteLine("Bounce!");
       };
 
       return res;
@@ -178,6 +187,15 @@ namespace paujo.juze.android {
       DatabaseHelper helper = new DatabaseHelper(context.Activity.ApplicationContext);
       flavors = helper.GetFlavors();
       NotifyDataSetChanged();
+    }
+
+
+    public bool Debounce() {
+      if (clickTimer == null || clickTimer.ElapsedMilliseconds > 1000) {
+        clickTimer = Stopwatch.StartNew();
+        return true;
+      }
+      return false;
     }
   }
 }
