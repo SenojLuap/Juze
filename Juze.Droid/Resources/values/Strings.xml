@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="Hello">Hello World, Click Me!</string>
   <string name="ApplicationName">Juze</string>
-  <string name="JuzeName">Juze App Name</string>
-  <string name="CreateFlavor">Create Flavor</string>
-  <string name="EditFlavor">Edit Flavor</string>
   <string name="FlavorName">Name</string>
-  <string name="CreateFlavorCanceled">Canceled Flavor Creation</string>
   <string name="PGBased">PG</string>
   <string name="RecPercent">Rec. %</string>
   <string name="DefaultFlavorName">\u003c Enter Flavor Name \u003e</string>
-  <string name="EditFlavor">Edit Flavor</string>
-  <string name="UpdateFlavor">Update</string>
+  <string name="AcceptFlavor">OK</string>
+  <string name="CancelFlavor">Cancel</string>
 </resources>

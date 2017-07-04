@@ -13,15 +13,14 @@ using Android.Widget;
 using Newtonsoft.Json;
 
 namespace paujo.juze.android {
-  [Activity(Label = "FlavorListActivity", ParentActivity = typeof(MainActivity))]
-  public class FlavorListActivity : ListActivity {
+  public class FlavorListFragment : ListFragment {
 
     public const int CREATE_FLAVOR_REQUEST = 1000;
     public const int EDIT_FLAVOR_REQUEST = 1001;
 
-    protected override void OnCreate(Bundle savedInstanceState) {
+    public override void OnCreate(Bundle savedInstanceState) {
       base.OnCreate(savedInstanceState);
-      DatabaseHelper helper = new DatabaseHelper(ApplicationContext);
+      DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
       IList<Flavor> flavors = helper.GetFlavors();
       ListAdapter = new FlavorListAdapter(this);
     }
@@ -31,23 +30,23 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="menu">The menu to append items to.</param>
     /// <returns>No idea.</returns>
-    public override bool OnCreateOptionsMenu(IMenu menu) {
-      MenuInflater.Inflate(Resource.Layout.FlavorListMenu, menu);
-      return base.OnCreateOptionsMenu(menu);
-    }
+    //    public override bool OnCreateOptionsMenu(IMenu menu) {
+    //      MenuInflater.Inflate(Resource.Layout.FlavorListMenu, menu);
+    //      return base.OnCreateOptionsMenu(menu);
+    //    }
 
     /// <summary>
     /// Callback for user selection of menu item.
     /// </summary>
     /// <param name="item">The item that has been selected.</param>
     /// <returns>Don't know.</returns>
-    public override bool OnOptionsItemSelected(IMenuItem item) {
-      if (item.ItemId == Resource.Id.flCreateFlavor) {
-        Intent createFlavorIntent = new Intent(this, typeof(CreateFlavorActivity));
-        StartActivityForResult(createFlavorIntent, CREATE_FLAVOR_REQUEST);
-      }
-      return base.OnOptionsItemSelected(item);
-    }
+    //    public override bool OnOptionsItemSelected(IMenuItem item) {
+    //      if (item.ItemId == Resource.Id.flCreateFlavor) {
+    //        Intent createFlavorIntent = new Intent(this, typeof(CreateFlavorActivity));
+    //        StartActivityForResult(createFlavorIntent, CREATE_FLAVOR_REQUEST);
+    //      }
+    //      return base.OnOptionsItemSelected(item);
+    //    }
 
 
     /// <summary>
@@ -56,26 +55,26 @@ namespace paujo.juze.android {
     /// <param name="requestCode">The code passed when requesting info from the Intent.</param>
     /// <param name="resultCode">The result of the Activity.</param>
     /// <param name="data">The data returned from the Activity.</param>
-    protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data) {
-      if (requestCode == CREATE_FLAVOR_REQUEST ||
-        requestCode == EDIT_FLAVOR_REQUEST) {
-        if (resultCode == Result.Ok) {
-          FlavorListAdapter ba = ListAdapter as FlavorListAdapter;
-          if (ba != null) {
-            ba.Reset();
-          }
-        }
-      }
-      base.OnActivityResult(requestCode, resultCode, data);
-    }
+    //    protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data) {
+    //      if (requestCode == CREATE_FLAVOR_REQUEST ||
+    //        requestCode == EDIT_FLAVOR_REQUEST) {
+    //        if (resultCode == Result.Ok) {
+    //          FlavorListAdapter ba = ListAdapter as FlavorListAdapter;
+    //          if (ba != null) {
+    //            ba.Reset();
+    //          }
+    //        }
+    //      }
+    //      base.OnActivityResult(requestCode, resultCode, data);
+    //    }
 
     /// <summary>
     /// Remove the flavor from the database.
     /// </summary>
     /// <param name="toRemove"></param>
     public void RemoveFlavor(Flavor toRemove) {
-      Toast.MakeText(ApplicationContext, "Removed: " + toRemove.Name, ToastLength.Short).Show();
-      DatabaseHelper helper = new DatabaseHelper(ApplicationContext);
+      Toast.MakeText(Activity.ApplicationContext, "Removed: " + toRemove.Name, ToastLength.Short).Show();
+      DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
       helper.RemoveFlavor(toRemove);
       FlavorListAdapter adapter = ListAdapter as FlavorListAdapter;
       if (adapter != null)
@@ -87,19 +86,15 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="toEdit">The flavor to edit.</param>
     public void EditFlavor(Flavor toEdit) {
-      Intent startEdit = new Intent(this, typeof(EditFlavorActivity));
-      startEdit.PutExtra("flavor_data", JsonConvert.SerializeObject(toEdit));
-      StartActivityForResult(startEdit, EDIT_FLAVOR_REQUEST);
+      FlavorActivity parent = Activity as FlavorActivity;
+      if (parent != null) {
+        parent.StartEditFlavor(toEdit);
+      }
     }
   }
 
 
   public class FlavorListAdapter : BaseAdapter<Flavor> {
-
-    /// <summary>
-    /// Time, in ms, to block input on buttons once pressed.
-    /// </summary>
-    public const int DEBOUNCE_TIMEOUT = 100;
 
     /// <summary>
     /// The list of flavors the adapter exposes.
@@ -109,12 +104,7 @@ namespace paujo.juze.android {
     /// <summary>
     /// The activity that owns the ListView.
     /// </summary>
-    public FlavorListActivity context;
-
-    /// <summary>
-    /// The time of the last user click.
-    /// </summary>
-    public Int32 lastClick = 0;
+    public FlavorListFragment context;
 
     /// <summary>
     /// Retreives a flavor, by index.
@@ -141,9 +131,9 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="context">The activity that owns the ListView.</param>
     /// <param name="flavorList">The list of flavors to be represented.</param>
-    public FlavorListAdapter(FlavorListActivity context) : base() {
+    public FlavorListAdapter(FlavorListFragment context) : base() {
       this.context = context;
-      DatabaseHelper helper = new DatabaseHelper(context.ApplicationContext);
+      DatabaseHelper helper = new DatabaseHelper(context.Activity.ApplicationContext);
       this.flavors = helper.GetFlavors();
     }
 
@@ -166,40 +156,26 @@ namespace paujo.juze.android {
     public override View GetView(int position, View convertView, ViewGroup parent) {
       View res = convertView;
       if (res == null) {
-        res = context.LayoutInflater.Inflate(Resource.Layout.FlavorListRow, null);
+        res = context.Activity.LayoutInflater.Inflate(Resource.Layout.FlavorListRow, null);
       }
       Flavor flavor = flavors[position];
       var labelBtn = res.FindViewById<Button>(Resource.Id.lfrText);
       labelBtn.Text = flavor.Name;
       labelBtn.Click += delegate {
-        if (Debounce()) context.EditFlavor(flavor);
+        context.EditFlavor(flavor);
       };
       res.FindViewById<ImageButton>(Resource.Id.lfrRemoveBtn).Click += delegate {
-        if (Debounce()) context.RemoveFlavor(flavor);
+        context.RemoveFlavor(flavor);
       };
 
       return res;
     }
 
     /// <summary>
-    /// Prevents double-clicks.
+    /// The list of flavors has changed. Update and redraw.
     /// </summary>
-    /// <returns>false if called withtin DEBOUNCE_TIMEOUT, true otherwise.</returns>
-    private bool Debounce() {
-      DateTime now = DateTime.Now;
-      if (now.Millisecond - lastClick > DEBOUNCE_TIMEOUT) {
-        lastClick = now.Millisecond;
-        return true;
-      }
-      Console.WriteLine("Bounce, fool!");
-      return false;
-  }
-
-  /// <summary>
-  /// The list of flavors has changed. Update and redraw.
-  /// </summary>
-  public void Reset() {
-      DatabaseHelper helper = new DatabaseHelper(context.ApplicationContext);
+    public void Reset() {
+      DatabaseHelper helper = new DatabaseHelper(context.Activity.ApplicationContext);
       flavors = helper.GetFlavors();
       NotifyDataSetChanged();
     }

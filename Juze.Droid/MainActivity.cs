@@ -46,7 +46,7 @@ namespace paujo.juze.android {
     /// <param name="args"></param>
     [InjectOnClick(Resource.Id.mListFlavorsBtn)]
     public void StartFlavorListActivity(Object caller, EventArgs args) {
-      Intent listIntent = new Intent(this, typeof(FlavorListActivity));
+      Intent listIntent = new Intent(this, typeof(FlavorActivity));
       StartActivity(listIntent);
     }
   }
