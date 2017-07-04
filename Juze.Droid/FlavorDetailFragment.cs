@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 using Com.Lilarcor.Cheeseknife;
 
 namespace paujo.juze.android {
-  public class FlavorDetailFragment : Fragment {
+  public class FlavorDetailFragment : Android.Support.V4.App.Fragment {
 
     /// <summary>
     /// The flavor begin created/edited.
@@ -109,7 +109,7 @@ namespace paujo.juze.android {
     /// Hide the edit/create fragment.
     /// </summary>
     public void End() {
-      Activity.FragmentManager.PopBackStack();
+      Activity.SupportFragmentManager.PopBackStack();
     }
   }
 }

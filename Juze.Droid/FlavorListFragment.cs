@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace paujo.juze.android {
-  public class FlavorListFragment : ListFragment {
+  public class FlavorListFragment : Android.Support.V4.App.ListFragment {
 
     public const int CREATE_FLAVOR_REQUEST = 1000;
     public const int EDIT_FLAVOR_REQUEST = 1001;

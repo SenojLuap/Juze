@@ -9,10 +9,13 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Support.V4.App;
+
+using Xamarin.Android;
 
 namespace paujo.juze.android {
   [Activity(Label="FlavorActivity", ParentActivity=typeof(MainActivity))]
-  public class FlavorActivity : Activity {
+  public class FlavorActivity : FragmentActivity {
 
     /// <summary>
     /// Called on the creation of the Activity.
@@ -22,7 +25,7 @@ namespace paujo.juze.android {
       base.OnCreate(savedInstanceState);
       SetContentView(Resource.Layout.FlavorActivityLayout);
       FlavorListFragment listFrag = new FlavorListFragment();
-      var trans = FragmentManager.BeginTransaction();
+      var trans = SupportFragmentManager.BeginTransaction();
       trans.Add(Resource.Id.faFragmentView, listFrag, "listFragment");
       trans.Commit();
     }
@@ -34,7 +37,13 @@ namespace paujo.juze.android {
     public void StartEditFlavor(Flavor toEdit) {
       FlavorDetailFragment fdFrag = new FlavorDetailFragment();
       fdFrag.SetFlavor(toEdit);
-      var transaction = FragmentManager.BeginTransaction();
+      var transaction = SupportFragmentManager.BeginTransaction();
+      try {
+        transaction.SetCustomAnimations(Resource.Animation.fromLeftAnimation, Resource.Animation.fadeOutAnimation, Resource.Animation.fadeInAnimation, Resource.Animation.toLeftAnimation);
+      } catch (Exception e) {
+        Console.WriteLine(e.Message);
+        throw e;
+      }
       transaction.Replace(Resource.Id.faFragmentView, fdFrag, "detailFragment");
       transaction.AddToBackStack("list_to_edit");
       transaction.Commit();
