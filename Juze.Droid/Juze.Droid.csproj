@@ -65,8 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="EditFlavorActivity.cs" />
-    <Compile Include="CreateFlavorActivity.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="FlavorActivity.cs" />
     <Compile Include="FlavorDetailFragment.cs" />
@@ -81,13 +79,7 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\CreateFlavor.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\FlavorListRow.axml" />
-    <AndroidResource Include="Resources\layout\EditFlavor.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\FlavorDetailLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
