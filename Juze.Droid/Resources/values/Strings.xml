@@ -7,4 +7,7 @@
   <string name="DefaultFlavorName">\u003c Enter Flavor Name \u003e</string>
   <string name="AcceptFlavor">OK</string>
   <string name="CancelFlavor">Cancel</string>
+  <string name="NicName">Name</string>
+  <string name="NicPG">PG% / VG%</string>
+  <string name="NicConc">mg/mL</string>
 </resources>

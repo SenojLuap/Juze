@@ -74,6 +74,8 @@
     <Compile Include="FlavorListFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainActivity.Database.cs" />
+    <Compile Include="NicotineActivity.cs" />
+    <Compile Include="NicotineDetailFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,6 +89,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\FlavorActivityLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\NicotineDetailLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\NicotineActivityLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

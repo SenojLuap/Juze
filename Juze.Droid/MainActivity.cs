@@ -49,6 +49,17 @@ namespace paujo.juze.android {
       Intent listIntent = new Intent(this, typeof(FlavorActivity));
       StartActivity(listIntent);
     }
+
+    /// <summary>
+    /// Start the nicotine activity.
+    /// </summary>
+    /// <param name="caller">The button that triggered the event.</param>
+    /// <param name="args">Information about the event.</param>
+    [InjectOnClick(Resource.Id.mNicotineBtn)]
+    public void StartNicotineActivity(Object caller, EventArgs args) {
+      Intent nicIntent = new Intent(this, typeof(NicotineActivity));
+      StartActivity(nicIntent);
+    }
   }
 }
 

@@ -17,4 +17,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/mDumpFlavorCountBtn"
         android:layout_gravity="center" />
+  <Button
+      android:text="*Nicotine Stuff"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/mNicotineBtn"
+      android:layout_gravity="center" />
 </LinearLayout>

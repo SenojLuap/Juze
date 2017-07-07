@@ -133,6 +133,42 @@ namespace paujo.juze.android
 			// aapt resource value: 0x7f06000e
 			public const int mListFlavorsBtn = 2131099662;
 			
+			// aapt resource value: 0x7f060010
+			public const int mNicotineBtn = 2131099664;
+			
+			// aapt resource value: 0x7f060011
+			public const int naFragmentView = 2131099665;
+			
+			// aapt resource value: 0x7f06001a
+			public const int ndAcceptBtn = 2131099674;
+			
+			// aapt resource value: 0x7f06001b
+			public const int ndCancelBtn = 2131099675;
+			
+			// aapt resource value: 0x7f060019
+			public const int ndConcField = 2131099673;
+			
+			// aapt resource value: 0x7f060018
+			public const int ndConcLabel = 2131099672;
+			
+			// aapt resource value: 0x7f060012
+			public const int ndLayout = 2131099666;
+			
+			// aapt resource value: 0x7f060014
+			public const int ndNameField = 2131099668;
+			
+			// aapt resource value: 0x7f060013
+			public const int ndNameLabel = 2131099667;
+			
+			// aapt resource value: 0x7f060015
+			public const int ndPGLabel = 2131099669;
+			
+			// aapt resource value: 0x7f060016
+			public const int ndPGSlider = 2131099670;
+			
+			// aapt resource value: 0x7f060017
+			public const int ndPGValueLabel = 2131099671;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -161,6 +197,12 @@ namespace paujo.juze.android
 			// aapt resource value: 0x7f030004
 			public const int Main = 2130903044;
 			
+			// aapt resource value: 0x7f030005
+			public const int NicotineActivityLayout = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int NicotineDetailLayout = 2130903046;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -183,14 +225,23 @@ namespace paujo.juze.android
 			// aapt resource value: 0x7f050006
 			public const int CancelFlavor = 2131034118;
 			
-			// aapt resource value: 0x7f050007
-			public const int CreateFlavor = 2131034119;
+			// aapt resource value: 0x7f05000a
+			public const int CreateFlavor = 2131034122;
 			
 			// aapt resource value: 0x7f050004
 			public const int DefaultFlavorName = 2131034116;
 			
 			// aapt resource value: 0x7f050001
 			public const int FlavorName = 2131034113;
+			
+			// aapt resource value: 0x7f050009
+			public const int NicConc = 2131034121;
+			
+			// aapt resource value: 0x7f050007
+			public const int NicName = 2131034119;
+			
+			// aapt resource value: 0x7f050008
+			public const int NicPG = 2131034120;
 			
 			// aapt resource value: 0x7f050002
 			public const int PGBased = 2131034114;
