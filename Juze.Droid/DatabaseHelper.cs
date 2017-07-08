@@ -24,6 +24,15 @@ namespace paujo.juze.android {
     /// <param name="db">The database being created.</param>
     public override void OnCreate(SQLiteDatabase db) {
       CreateFlavorTable(db);
+      CreateNicotineTable(db);
+    }
+
+    /// <summary>
+    /// Create the nicotine table.
+    /// </summary>
+    /// <param name="db">The database the table should be added to.</param>
+    public void CreateNicotineTable(SQLiteDatabase db) {
+      db.ExecSQL(Nicotine.CreateTableCommand);
     }
 
     /// <summary>
@@ -75,8 +84,6 @@ namespace paujo.juze.android {
     /// </summary>
     /// <returns>The collection of all flavors currently in the database.</returns>
     public IList<Flavor> GetFlavors() {
-      Console.WriteLine("Get flavors");
-
       List<Flavor> res = new List<Flavor>();
       ICursor iter = ReadableDatabase.RawQuery(Flavor.ListCommand, null);
       int colCount = iter.ColumnCount;
@@ -88,6 +95,63 @@ namespace paujo.juze.android {
         Flavor newFlavor = Flavor.ParseFromQueryResult(columns);
         if (newFlavor != null)
           res.Add(newFlavor);
+      }
+      iter.Close();
+      return res;
+    }
+
+    /// <summary>
+    /// Add a new nicotine to the nicotine table.
+    /// </summary>
+    /// <param name="nicotine">The nicotine to add.</param>
+    public void PutNicotine(Nicotine nicotine) {
+      try {
+        WritableDatabase.ExecSQL(nicotine.InsertCommand);
+      } catch (SQLiteAbortException e) {
+        Console.WriteLine(e.Message);
+      }
+    }
+
+    /// <summary>
+    /// Update a nicotine in the database.
+    /// </summary>
+    /// <param name="nicotine">The nicotine to update.</param>
+    public void UpdateNicotine(Nicotine nicotine) {
+      try {
+        WritableDatabase.ExecSQL(nicotine.UpdateCommand);
+      } catch (SQLiteAbortException e) {
+        Console.WriteLine(e.Message);
+      }
+    }
+
+    /// <summary>
+    /// Remove a nicotine from the database.
+    /// </summary>
+    /// <param name="nicotine">The nicotine to remove.</param>
+    public void RemoveNicotine(Nicotine nicotine) {
+      try {
+        WritableDatabase.ExecSQL(nicotine.DeleteCommand);
+      } catch (SQLiteAbortException e) {
+        Console.WriteLine(e.Message);
+      }
+    }
+
+    /// <summary>
+    /// Retrieve all nicotines from the database.
+    /// </summary>
+    /// <returns>The collection of all nicotines currently in the database.</returns>
+    public IList<Nicotine> GetNicotines() {
+      IList<Nicotine> res = new List<Nicotine>();
+
+      ICursor iter = ReadableDatabase.RawQuery(Nicotine.ListCommand, null);
+      int colCount = iter.ColumnCount;
+      while (iter.MoveToNext()) {
+        string[] columns = new string[colCount];
+        for (int i = 0; i < colCount; i++)
+          columns[i] = iter.GetString(i);
+        Nicotine newNic = Nicotine.ParseFromQueryResult(columns);
+        if (newNic != null)
+          res.Add(newNic);
       }
       iter.Close();
       return res;
