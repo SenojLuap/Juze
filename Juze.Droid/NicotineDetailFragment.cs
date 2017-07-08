@@ -91,7 +91,7 @@ namespace paujo.juze.android {
     public void OnAccept(object caller, EventArgs args) {
       nicotine.Name = nameField.Text;
       nicotine.PG = (pgSlider.Progress / 100);
-      nicotine.Concentration = float.Parse(concField.Text);
+      nicotine.Concentration = int.Parse(concField.Text);
 
       // TODO: Put the nicotine in the database.
 

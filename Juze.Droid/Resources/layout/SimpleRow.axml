@@ -10,7 +10,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lfrText"
+        android:id="@+id/srText"
         android:paddingLeft="10dp"
         android:gravity="left|center_vertical"
         android:layout_weight="1"
@@ -19,7 +19,7 @@
         android:src="@android:drawable/ic_menu_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lfrRemoveBtn"
+        android:id="@+id/srRemoveBtn"
         android:layout_gravity="center"
         android:layout_marginRight="10dp"
         android:background="?android:selectableItemBackground" />

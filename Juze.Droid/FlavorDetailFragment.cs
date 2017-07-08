@@ -109,7 +109,9 @@ namespace paujo.juze.android {
     /// Hide the edit/create fragment.
     /// </summary>
     public void End() {
-      Activity.SupportFragmentManager.PopBackStack();
+      FlavorActivity fa = Activity as FlavorActivity;
+      if (fa != null)
+        fa.StopEditFlavor();
     }
   }
 }

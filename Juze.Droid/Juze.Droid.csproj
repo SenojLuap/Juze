@@ -72,10 +72,13 @@
     <Compile Include="FlavorActivity.cs" />
     <Compile Include="FlavorDetailFragment.cs" />
     <Compile Include="FlavorListFragment.cs" />
+    <Compile Include="JuzeListAdapter.cs" />
+    <Compile Include="JuzeListFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainActivity.Database.cs" />
     <Compile Include="NicotineActivity.cs" />
     <Compile Include="NicotineDetailFragment.cs" />
+    <Compile Include="NicotineListFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,7 +87,7 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\FlavorListRow.axml" />
+    <AndroidResource Include="Resources\layout\SimpleRow.axml" />
     <AndroidResource Include="Resources\layout\FlavorDetailLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -95,6 +98,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\NicotineActivityLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\NicotineRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -119,7 +125,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\FlavorListMenu.xml" />
+    <AndroidResource Include="Resources\menu\JuzeListMenu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\anim\fromLeftAnimation.xml" />

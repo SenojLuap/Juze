@@ -50,6 +50,12 @@ namespace paujo.juze.android {
       StartActivity(listIntent);
     }
 
+    [InjectOnClick(Resource.Id.mDumpNicotineCountBtn)]
+    public void DumpNicotienClick(Object caller, EventArgs args) {
+      IList<Nicotine> nicotines = GetAllNicotines();
+      Toast.MakeText(ApplicationContext, "Count: " + nicotines.Count, ToastLength.Short).Show();
+    }
+
     /// <summary>
     /// Start the nicotine activity.
     /// </summary>

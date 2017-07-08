@@ -23,5 +23,10 @@ namespace paujo.juze.android {
       var db = new DatabaseHelper(ApplicationContext);
       return db.GetFlavors();
     }
+
+    public IList<Nicotine> GetAllNicotines() {
+      var db = new DatabaseHelper(ApplicationContext);
+      return db.GetNicotines();
+    }
   }
 }

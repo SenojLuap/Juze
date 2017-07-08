@@ -49,6 +49,14 @@ namespace paujo.juze.android {
       transaction.Commit();
     }
 
+    public void StopEditFlavor() {
+      SupportFragmentManager.PopBackStackImmediate();
+      var fragment = SupportFragmentManager.FindFragmentByTag("listFragment") as FlavorListFragment;
+      if (fragment != null) {
+        fragment.Reset();
+      }
+    }
+
     /// <summary>
     /// Called when the user presses the back button on the device.
     /// </summary>
