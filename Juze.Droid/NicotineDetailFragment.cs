@@ -86,20 +86,40 @@ namespace paujo.juze.android {
       this.nicotine = newNicotine;
     }
 
-
+    /// <summary>
+    /// Called when the user presses the 'OK' button.
+    /// </summary>
+    /// <param name="caller">The button that triggered the event.</param>
+    /// <param name="args">Information about the event.</param>
     [InjectOnClick(Resource.Id.ndAcceptBtn)]
     public void OnAccept(object caller, EventArgs args) {
       nicotine.Name = nameField.Text;
       nicotine.PG = (pgSlider.Progress / 100);
       nicotine.Concentration = int.Parse(concField.Text);
 
-      // TODO: Put the nicotine in the database.
+      bool update = false;
+      DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
+      foreach (var nic in helper.GetNicotines()) {
+        if (nic.ID == nicotine.ID) {
+          update = true;
+          break;
+        }
+      }
+      if (update)
+        helper.UpdateNicotine(nicotine);
+      else
+        helper.PutNicotine(nicotine);
 
       End();
     }
 
+    /// <summary>
+    /// End the fragment.
+    /// </summary>
     public void End() {
-      // TODO: End the fragment
+      NicotineActivity na = Activity as NicotineActivity;
+      if (na != null)
+        na.StopEditNicotine();
     }
   }
 }

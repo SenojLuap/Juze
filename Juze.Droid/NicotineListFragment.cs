@@ -12,68 +12,46 @@ using Android.Views;
 using Android.Widget;
 
 namespace paujo.juze.android {
-  public class NicotineListFragment : Android.Support.V4.App.ListFragment {
-    public override void OnCreate(Bundle savedInstanceState) {
-      base.OnCreate(savedInstanceState);
-
-      // Create your fragment here
-    }
-
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-      // Use this to return your custom view for this Fragment
-      // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-      return base.OnCreateView(inflater, container, savedInstanceState);
-    }
-  }
-
-  public class NicotineListAdapter : BaseAdapter<Nicotine> {
-
-    public IList<Nicotine> nicotines;
-
-    public NicotineListFragment context;
+  public class NicotineListFragment : JuzeListFragment<Nicotine> {
 
     /// <summary>
-    /// Retrieve a specific item from the collection
+    /// Create a new nicotine.
     /// </summary>
-    /// <param name="position">The index to retrieve from.</param>
-    /// <returns>The nicotine at the specified index.</returns>
-    public override Nicotine this[int position] {
-      get {
-        return nicotines[position];
+    public override void CreateElement() {
+      Nicotine newNic = new Nicotine();
+      newNic.ID = -1;
+      newNic.Name = GetString(Resource.String.DefaultNicotineName);
+      NicotineActivity na = Activity as NicotineActivity;
+      if (na != null) {
+        na.StartEditNicotine(newNic);
       }
     }
 
     /// <summary>
-    /// The number of elements in the collection.
+    /// Edit the specified nicotine.
     /// </summary>
-    public override int Count {
-      get {
-        return nicotines.Count;
-      }
+    /// <param name="element">The nicotine to edit.</param>
+    public override void EditElement(JuzeBaseType element) {
+      Nicotine nicotine = element as Nicotine;
+      if (nicotine == null)
+        return;
+      NicotineActivity na = Activity as NicotineActivity;
+      if (na != null)
+        na.StartEditNicotine(nicotine);
     }
 
     /// <summary>
-    /// No idea.
+    /// Remove a nicotine from the list.
     /// </summary>
-    /// <param name="position">Even less idea.</param>
-    /// <returns>Srsly....I don't know.</returns>
-    public override long GetItemId(int position) {
-      return position;
-    }
-
-
-    public override View GetView(int position, View convertView, ViewGroup parent) {
-      throw new NotImplementedException();
-    }
-
-    /// <summary>
-    /// Reset the adapter after a change to the database.
-    /// </summary>
-    public void Reset() {
-      DatabaseHelper db = new DatabaseHelper(context.Activity.ApplicationContext);
-      nicotines = db.GetNicotines();
-      NotifyDataSetChanged();
+    /// <param name="element">The nicotine to be removed.</param>
+    public override void RemoveElement(JuzeBaseType element) {
+      Nicotine nicotine = element as Nicotine;
+      if (nicotine == null)
+        return;
+      DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
+      helper.RemoveNicotine(nicotine);
+      Toast.MakeText(Activity, "Removed: " + nicotine.Name, ToastLength.Short).Show();
+      Reset();
     }
   }
 }

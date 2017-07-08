@@ -38,14 +38,9 @@ namespace paujo.juze.android {
       FlavorDetailFragment fdFrag = new FlavorDetailFragment();
       fdFrag.SetFlavor(toEdit);
       var transaction = SupportFragmentManager.BeginTransaction();
-      try {
-        transaction.SetCustomAnimations(Resource.Animation.fromLeftAnimation, Resource.Animation.fadeOutAnimation, Resource.Animation.fadeInAnimation, Resource.Animation.toLeftAnimation);
-      } catch (Exception e) {
-        Console.WriteLine(e.Message);
-        throw e;
-      }
+      transaction.SetCustomAnimations(Resource.Animation.fromLeftAnimation, Resource.Animation.fadeOutAnimation, Resource.Animation.fadeInAnimation, Resource.Animation.toLeftAnimation);
       transaction.Replace(Resource.Id.faFragmentView, fdFrag, "detailFragment");
-      transaction.AddToBackStack("list_to_edit");
+      transaction.AddToBackStack("startEditFlavor");
       transaction.Commit();
     }
 
@@ -61,8 +56,8 @@ namespace paujo.juze.android {
     /// Called when the user presses the back button on the device.
     /// </summary>
     public override void OnBackPressed() {
-      if (FragmentManager.BackStackEntryCount > 0)
-        FragmentManager.PopBackStack();
+      if (SupportFragmentManager.BackStackEntryCount > 0)
+        SupportFragmentManager.PopBackStack();
       else
         base.OnBackPressed();
     }
