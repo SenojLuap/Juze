@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace paujo.juze {
-  public class Nicotine {
+  public class Nicotine : JuzeBaseType {
 
     /// <summary>
     /// Names of elements in the nicotine SQLite table.
@@ -13,20 +13,6 @@ namespace paujo.juze {
     public static string NAME_COL = "NAME";
     public static string VG_COL = "VG";
     public static string CONC_COL = "CONCENTRATION";
-
-    /// <summary>
-    /// Unique ID for the nicotine.
-    /// </summary>
-    public int ID {
-      get; set;
-    }
-
-    /// <summary>
-    /// Human-readable name for the nicotine.
-    /// </summary>
-    public string Name {
-      get; set;
-    }
 
     /// <summary>
     /// Percentage of VG in the nicotine solution.

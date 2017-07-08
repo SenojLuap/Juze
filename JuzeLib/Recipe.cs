@@ -1,24 +1,8 @@
 ﻿using System.Collections.Generic;
 
 namespace paujo.juze {
-  public class Recipe {
+  public class Recipe : JuzeBaseType {
     
-
-    /// <summary>
-    /// Unique ID for the recipe.
-    /// </summary>
-    public int ID {
-      get; set;
-    }
-
-
-    /// <summary>
-    /// Human-readable name of the recipe.
-    /// </summary>
-    public string Name {
-      get; set;
-    }
-
 
     /// <summary>
     /// Percentage of VG in the recipe.
@@ -26,7 +10,6 @@ namespace paujo.juze {
     public float VG {
       get; set;
     }
-
 
     /// <summary>
     /// Percentage of PG in the recipe.
@@ -40,14 +23,12 @@ namespace paujo.juze {
       }
     }
 
-
     /// <summary>
     /// Nicotine solution used.
     /// </summary>
     public Nicotine Nicotine {
       get; set;
     }
-
 
     /// <summary>
     /// Target nicotine content, as mg/mL
@@ -56,14 +37,12 @@ namespace paujo.juze {
       get; set;
     }
 
-
     /// <summary>
     /// The flavors added to the recipe.
     /// </summary>
     public IList<RecipeItem> Flavors {
       get; set;
     }
-
 
     /// <summary>
     /// Get a brew recipe with concrete amounts.

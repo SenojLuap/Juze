@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace paujo.juze {
-  public class Flavor {
+  public class Flavor : JuzeBaseType {
 
     /// <summary>
     /// Names of elements in the flavors SQLite table.
@@ -13,28 +13,11 @@ namespace paujo.juze {
     public const string RECPER_COL = "REC_PER";
 
     /// <summary>
-    /// Unique ID for the flavor.
-    /// </summary>
-    public int ID {
-      get; set;
-    }
-
-
-    /// <summary>
-    /// Human-readable name of the flavor.
-    /// </summary>
-    public string Name {
-      get; set;
-    }
-
-
-    /// <summary>
     /// Is the flavor PG-based?
     /// </summary>
     public bool PG {
       get; set;
     }
-
 
     /// <summary>
     /// Recommended starting percentge for new recipes.
@@ -42,7 +25,6 @@ namespace paujo.juze {
     public float RecommendedPercentage {
       get; set;
     }
-
 
     /// <summary>
     /// The weight of the flavoring, in g/mL.
@@ -52,7 +34,6 @@ namespace paujo.juze {
         return PG ? Constants.PG_GRAVITY : Constants.VG_GRAVITY;
       }
     }
-
 
     /// <summary>
     /// The command required to generate tables for Flavors.
