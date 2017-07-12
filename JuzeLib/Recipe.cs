@@ -2,7 +2,13 @@
 
 namespace paujo.juze {
   public class Recipe : JuzeBaseType {
-    
+
+    public const string TABLE_NAME = "RECIPE";
+    public const string ID_COL = "ID";
+    public const string NAME_COL = "NAME";
+    public const string VG_COL = "VG";
+    public const string NICOTINE_COL = "NICOTINE_ID";
+    public const string TARGET_NIC_COL = "TARGET_NICOTINE";
 
     /// <summary>
     /// Percentage of VG in the recipe.
