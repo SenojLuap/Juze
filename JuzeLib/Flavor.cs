@@ -7,8 +7,8 @@ namespace paujo.juze {
     /// Names of elements in the flavors SQLite table.
     /// </summary>
     public const string TABLE_NAME = "FLAVOR";
-    public const string ID_COL = "ID";
     public const string NAME_COL = "NAME";
+    public const string ID_COL = "ID";
     public const string PG_COL = "PG";
     public const string RECPER_COL = "REC_PER";
 
