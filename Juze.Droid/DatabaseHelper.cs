@@ -25,21 +25,7 @@ namespace paujo.juze.android {
     public override void OnCreate(SQLiteDatabase db) {
       CreateFlavorTable(db);
       CreateNicotineTable(db);
-      CreateRecipeTables(db);
     }
-
-    /// <summary>
-    /// Called when attempting to promote an older version of a database to a newer one.
-    /// </summary>
-    /// <param name="db">The database being upgraded.</param>
-    /// <param name="oldVersion">The version of the old database.</param>
-    /// <param name="newVersion">The version of the new database.</param>
-    public override void OnUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
-    {
-      throw new NotImplementedException();
-    }
-
-    #region Create Tables
 
     /// <summary>
     /// Create the nicotine table.
@@ -56,19 +42,6 @@ namespace paujo.juze.android {
     public void CreateFlavorTable(SQLiteDatabase db) {
       db.ExecSQL(Flavor.CreateTableCommand);
     }
-
-    /// <summary>
-    /// Create the recipe items table.
-    /// </summary>
-    /// <param name="db">The database to add the table to.</param>
-    public void CreateRecipeTables(SQLiteDatabase db) {
-      db.ExecSQL(Recipe.CreateTableCommand);
-      db.ExecSQL(RecipeItem.CreateTableCommand);
-    }
-
-    #endregion
-
-    #region Flavor methods
 
     /// <summary>
     /// Add a new flavor to the flavor table.
@@ -127,10 +100,6 @@ namespace paujo.juze.android {
       return res;
     }
 
-    #endregion
-
-    #region Nicotine methods
-
     /// <summary>
     /// Add a new nicotine to the nicotine table.
     /// </summary>
@@ -188,98 +157,14 @@ namespace paujo.juze.android {
       return res;
     }
 
-    #endregion
-
-    #region Recipe methods
-
     /// <summary>
-    /// Add a new recipe to the recipe table.
+    /// Called when attempting to promote an older version of a database to a newer one.
     /// </summary>
-    /// <param name="recipe">The recipe to be added.</param>
-    public void PutRecipe(Recipe recipe) {
-      var db = WritableDatabase;
-      try {
-        foreach (var stmt in recipe.InsertCommands)
-          db.ExecSQL(stmt);
-      } catch (SQLException e) {
-        Console.WriteLine(e.Message);
-      }
+    /// <param name="db">The database being upgraded.</param>
+    /// <param name="oldVersion">The version of the old database.</param>
+    /// <param name="newVersion">The version of the new database.</param>
+    public override void OnUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+      throw new NotImplementedException();
     }
-
-    /// <summary>
-    /// Update a recipe in the database.
-    /// </summary>
-    /// <param name="recipe">The recipe to be updated.</param>
-    public void UpdateRecipe(Recipe recipe) {
-      var db = WritableDatabase;
-      try {
-        foreach (var stmt in recipe.UpdateCommands)
-          db.ExecSQL(stmt);
-      } catch (SQLException e) {
-        Console.WriteLine(e.Message);
-      }
-    }
-
-    /// <summary>
-    /// Remove a recipe from the database.
-    /// </summary>
-    /// <param name="recipe">The recipe to be removed.</param>
-    public void RemoveRecipe(Recipe recipe) {
-      var db = WritableDatabase;
-      try {
-        foreach (var stmt in recipe.DeleteCommands)
-          db.ExecSQL(stmt);
-      } catch (SQLException e) {
-        Console.WriteLine(e.Message);
-      }
-    }
-
-    /// <summary>
-    /// Retrieve all recipes from the database.
-    /// </summary>
-    /// <returns>The collection of all recipes in the database.</returns>
-    public IList<Recipe> GetRecipes() {
-      List<Recipe> res = new List<Recipe>();
-
-      var db = ReadableDatabase;
-
-      try {
-        ICursor iter = db.RawQuery(Recipe.ListCommand, null);
-        int colCount = iter.ColumnCount;
-        while (iter.MoveToNext()) {
-          string[] columns = new string[colCount];
-          for (int i = 0; i < colCount; i++)
-            columns[i] = iter.GetString(i);
-          Recipe newRecipe = Recipe.ParseFromQueryResult(columns);
-          if (newRecipe != null)
-            res.Add(newRecipe);
-        }
-      
-        iter.Close();
-      } catch (SQLException e) {
-        Console.WriteLine("While parsing recipes: " + e.Message);
-      }
-
-
-      foreach (var recipe in res) {
-        try {
-          ICursor iter = db.RawQuery(recipe.ListItemsCommand, null);
-          int colCount = iter.ColumnCount;
-          while (iter.MoveToNext()) {
-            string[] columns = new string[colCount];
-            for (int i = 0; i < colCount; i++)
-              columns[i] = iter.GetString(i);
-            recipe.ParseItemFromQueryResult(columns);
-          }
-          iter.Close();
-        } catch (SQLException e) {
-          Console.WriteLine($"While parsing items for {recipe.Name}: " + e.Message);
-        }
-      }
-
-      return res;
-    }
-
-    #endregion
   }
 }
