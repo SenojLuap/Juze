@@ -60,7 +60,7 @@ namespace paujo.juze {
     /// </summary>
     public string InsertCommand {
       get {
-        return $"INSERT INTO {TABLE_NAME} ({FLAVOR_COL} {OWNER_COL} {PERCENTAGE_COL}) " +
+        return $"INSERT INTO {TABLE_NAME} ({FLAVOR_COL}, {OWNER_COL}, {PERCENTAGE_COL}) " +
           $"VALUES ({Flavor.ID}, {Owner.ID}, {Percentage});";
       }
     }
