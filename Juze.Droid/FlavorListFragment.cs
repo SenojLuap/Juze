@@ -24,7 +24,7 @@ namespace paujo.juze.android {
       Flavor flavor = toRemove as Flavor;
       if (flavor == null)
         return;
-      Toast.MakeText(Activity.ApplicationContext, "Removed: " + toRemove.Name, ToastLength.Short).Show();
+      Toast.MakeText(Activity.ApplicationContext, "Removed: " + flavor.Name, ToastLength.Short).Show();
       DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
       helper.RemoveFlavor(flavor);
       Reset();

@@ -68,7 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="DatabaseHelper.cs" />
+    <Compile Include="DatabaseHelper\DatabaseHelper.cs" />
+    <Compile Include="DatabaseHelper\DatabaseHelper.Flavor.cs" />
+    <Compile Include="DatabaseHelper\DatabaseHelper.Nicotine.cs" />
+    <Compile Include="DatabaseHelper\DatabaseHelper.Recipe.cs" />
+    <Compile Include="DatabaseHelper\DatabaseHelper.RecipeItem.cs" />
     <Compile Include="FlavorActivity.cs" />
     <Compile Include="FlavorDetailFragment.cs" />
     <Compile Include="FlavorListFragment.cs" />

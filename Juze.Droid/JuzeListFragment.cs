@@ -12,7 +12,7 @@ using Android.Views;
 using Android.Widget;
 
 namespace paujo.juze.android {
-  public abstract class JuzeListFragment<T> : Android.Support.V4.App.ListFragment where T : JuzeBaseType {
+  public abstract class JuzeListFragment<T> : Android.Support.V4.App.ListFragment where T : JuzeNamedType {
 
     /// <summary>
     /// Called on the creation of the fragment.

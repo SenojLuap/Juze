@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace paujo.juze {
-  public class JuzeBaseType {
-
+  public class JuzeNamedType : JuzeBaseType {
     /// <summary>
-    /// Useable as a unique identifier.
-    /// Not used by JuseLib.
+    /// The human-readable name for the element.
     /// </summary>
-    public int ID {
+    public string Name {
       get; set;
     }
   }

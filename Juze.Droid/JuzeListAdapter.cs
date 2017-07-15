@@ -13,7 +13,7 @@ using System.Diagnostics;
 
 namespace paujo.juze.android {
 
-  public class JuzeListAdapter<T> : BaseAdapter<JuzeBaseType> where T : JuzeBaseType {
+  public class JuzeListAdapter<T> : BaseAdapter<JuzeNamedType> where T : JuzeNamedType {
 
     /// <summary>
     /// The list of elements the adapter exposes.
@@ -35,7 +35,7 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="position">The index of the flavor to retrieve.</param>
     /// <returns>The flavor for the specified index.</returns>
-    public override JuzeBaseType this[int position] {
+    public override JuzeNamedType this[int position] {
       get {
         return elements[position];
       }
@@ -62,8 +62,8 @@ namespace paujo.juze.android {
         this.elements = helper.GetFlavors().Cast<T>().ToList();
       if (typeof(T) == typeof(Nicotine))
         this.elements = helper.GetNicotines().Cast<T>().ToList();
-//      if (typeof(T) == typeof(Recipe))
-//        this.elements = helper.GetRecipes().Cast<T>().ToList();
+      if (typeof(T) == typeof(Recipe))
+        this.elements = helper.GetRecipes().Cast<T>().ToList();
 
     }
 
@@ -88,7 +88,7 @@ namespace paujo.juze.android {
       if (res == null) {
         res = context.Activity.LayoutInflater.Inflate(Resource.Layout.SimpleRow, null);
       }
-      JuzeBaseType element = elements[position];
+      JuzeNamedType element = elements[position];
       var labelBtn = res.FindViewById<Button>(Resource.Id.srText);
       labelBtn.Text = element.Name;
       labelBtn.Click += delegate {
@@ -117,8 +117,8 @@ namespace paujo.juze.android {
         this.elements = helper.GetFlavors().Cast<T>().ToList();
       if (typeof(T) == typeof(Nicotine))
         this.elements = helper.GetNicotines().Cast<T>().ToList();
-      //      if (typeof(T) == typeof(Recipe))
-      //        this.elements = helper.GetRecipes().Cast<T>().ToList();
+      if (typeof(T) == typeof(Recipe))
+        this.elements = helper.GetRecipes().Cast<T>().ToList();
       NotifyDataSetChanged();
     }
 
