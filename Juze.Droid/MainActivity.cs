@@ -66,6 +66,12 @@ namespace paujo.juze.android {
       Intent nicIntent = new Intent(this, typeof(NicotineActivity));
       StartActivity(nicIntent);
     }
+
+    [InjectOnClick(Resource.Id.mRecipeBtn)]
+    public void StartRecipeActivity(Object caller, EventArgs args) {
+      Intent recIntent = new Intent(this, typeof(RecipeActivity));
+      StartActivity(recIntent);
+    }
   }
 }
 

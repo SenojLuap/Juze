@@ -118,8 +118,8 @@ namespace paujo.juze.android
 			// aapt resource value: 0x7f070007
 			public const int fdRecPercLabel = 2131165191;
 			
-			// aapt resource value: 0x7f07001c
-			public const int jlCreateElement = 2131165212;
+			// aapt resource value: 0x7f070023
+			public const int jlCreateElement = 2131165219;
 			
 			// aapt resource value: 0x7f07000c
 			public const int mDumpFlavorCountBtn = 2131165196;
@@ -134,43 +134,64 @@ namespace paujo.juze.android
 			public const int mNicotineBtn = 2131165198;
 			
 			// aapt resource value: 0x7f07000f
-			public const int naFragmentView = 2131165199;
-			
-			// aapt resource value: 0x7f070018
-			public const int ndAcceptBtn = 2131165208;
-			
-			// aapt resource value: 0x7f070019
-			public const int ndCancelBtn = 2131165209;
-			
-			// aapt resource value: 0x7f070017
-			public const int ndConcField = 2131165207;
-			
-			// aapt resource value: 0x7f070016
-			public const int ndConcLabel = 2131165206;
+			public const int mRecipeBtn = 2131165199;
 			
 			// aapt resource value: 0x7f070010
-			public const int ndLayout = 2131165200;
+			public const int naFragmentView = 2131165200;
 			
-			// aapt resource value: 0x7f070012
-			public const int ndNameField = 2131165202;
-			
-			// aapt resource value: 0x7f070011
-			public const int ndNameLabel = 2131165201;
-			
-			// aapt resource value: 0x7f070013
-			public const int ndPGLabel = 2131165203;
-			
-			// aapt resource value: 0x7f070014
-			public const int ndPGSlider = 2131165204;
-			
-			// aapt resource value: 0x7f070015
-			public const int ndPGValueLabel = 2131165205;
-			
-			// aapt resource value: 0x7f07001b
-			public const int srRemoveBtn = 2131165211;
+			// aapt resource value: 0x7f070019
+			public const int ndAcceptBtn = 2131165209;
 			
 			// aapt resource value: 0x7f07001a
-			public const int srText = 2131165210;
+			public const int ndCancelBtn = 2131165210;
+			
+			// aapt resource value: 0x7f070018
+			public const int ndConcField = 2131165208;
+			
+			// aapt resource value: 0x7f070017
+			public const int ndConcLabel = 2131165207;
+			
+			// aapt resource value: 0x7f070011
+			public const int ndLayout = 2131165201;
+			
+			// aapt resource value: 0x7f070013
+			public const int ndNameField = 2131165203;
+			
+			// aapt resource value: 0x7f070012
+			public const int ndNameLabel = 2131165202;
+			
+			// aapt resource value: 0x7f070014
+			public const int ndPGLabel = 2131165204;
+			
+			// aapt resource value: 0x7f070015
+			public const int ndPGSlider = 2131165205;
+			
+			// aapt resource value: 0x7f070016
+			public const int ndPGValueLabel = 2131165206;
+			
+			// aapt resource value: 0x7f07001b
+			public const int raFragmentView = 2131165211;
+			
+			// aapt resource value: 0x7f07001c
+			public const int rdNameField = 2131165212;
+			
+			// aapt resource value: 0x7f07001d
+			public const int rdNicotineField = 2131165213;
+			
+			// aapt resource value: 0x7f070020
+			public const int rdPGLabel = 2131165216;
+			
+			// aapt resource value: 0x7f07001f
+			public const int rdPGSlider = 2131165215;
+			
+			// aapt resource value: 0x7f07001e
+			public const int rdTargetNicField = 2131165214;
+			
+			// aapt resource value: 0x7f070022
+			public const int srRemoveBtn = 2131165218;
+			
+			// aapt resource value: 0x7f070021
+			public const int srText = 2131165217;
 			
 			static Id()
 			{
@@ -204,7 +225,13 @@ namespace paujo.juze.android
 			public const int NicotineRow = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int SimpleRow = 2130903046;
+			public const int RecipeActivityLayout = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int RecipeDetailLayout = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int SimpleRow = 2130903048;
 			
 			static Layout()
 			{
@@ -244,8 +271,8 @@ namespace paujo.juze.android
 			// aapt resource value: 0x7f050007
 			public const int CancelFlavor = 2131034119;
 			
-			// aapt resource value: 0x7f05000b
-			public const int CreateElement = 2131034123;
+			// aapt resource value: 0x7f05000f
+			public const int CreateElement = 2131034127;
 			
 			// aapt resource value: 0x7f050004
 			public const int DefaultFlavorName = 2131034116;
@@ -270,6 +297,18 @@ namespace paujo.juze.android
 			
 			// aapt resource value: 0x7f050003
 			public const int RecPercent = 2131034115;
+			
+			// aapt resource value: 0x7f05000c
+			public const int rdNicotine = 2131034124;
+			
+			// aapt resource value: 0x7f05000e
+			public const int rdPG = 2131034126;
+			
+			// aapt resource value: 0x7f05000b
+			public const int rdRecipeName = 2131034123;
+			
+			// aapt resource value: 0x7f05000d
+			public const int rdTargetNicotine = 2131034125;
 			
 			static String()
 			{

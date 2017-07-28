@@ -7,7 +7,7 @@ namespace paujo.juze {
     /// <summary>
     /// The human-readable name for the element.
     /// </summary>
-    public string Name {
+    public virtual string Name {
       get; set;
     }
   }

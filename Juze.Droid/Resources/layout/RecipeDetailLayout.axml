@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+              android:layout_margin="10dp">
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:padding="3dp">
+        <TextView
+            android:text="@string/rdRecipeName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:labelFor="@+id/rdNameField" />
+        <EditText
+            android:id="@+id/rdNameField"
+            android:layout_columnWeight="1" />
+        <TextView
+            android:text="@string/rdNicotine"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:labelFor="@+id/rdNicotineField" />
+        <Spinner
+            android:layout_columnWeight="1"
+            android:id="@+id/rdNicotineField" />
+      <TextView
+        android:text="@string/rdTargetNicotine"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:labelFor="@+id/rdTargetNicField"/>
+      <EditText
+        android:id="@+id/rdTargetNicField"
+        android:layout_columnWeight="1"/>
+      <TextView
+        android:text="@string/rdPG"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:labelFor="@+id/rdPGSlider"
+        android:layout_columnSpan="2"
+        android:layout_gravity="center"/>
+      <SeekBar
+        android:id="@+id/rdPGSlider"
+        android:layout_columnSpan="2"
+        android:layout_width="match_parent"
+        android:max="100"
+        android:layout_gravity="center"/>
+      <TextView
+        android:id="@+id/rdPGLabel"
+        android:layout_columnSpan="2"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity="center"/>
+    </GridLayout>
+</LinearLayout>

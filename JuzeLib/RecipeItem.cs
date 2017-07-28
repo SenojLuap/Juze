@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace paujo.juze {
-  public class RecipeItem : JuzeBaseType {
+  public class RecipeItem : JuzeNamedType {
 
     /// <summary>
     /// The flavor being added to the recipe.
@@ -26,5 +26,20 @@ namespace paujo.juze {
       get; set; 
     }
 
+    /// <summary>
+    /// The name of the recipe item.
+    /// </summary>
+    public override string Name {
+      get {
+        string flavorS = "< Undecided >";
+        if (Flavor != null)
+          flavorS = Flavor.Name;
+        return flavorS + ": " + Percentage.ToString();
+      }
+
+      set {
+        base.Name = value;
+      }
+    }
   }
 }
