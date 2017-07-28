@@ -21,6 +21,17 @@ namespace paujo.juze.android {
     /// </summary>
     public Recipe recipe;
 
+    public IList<Nicotine> _Nicotines;
+    public IList<Nicotine> Nicotines {
+      get {
+        if (_Nicotines == null) {
+          DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
+          _Nicotines = helper.GetNicotines();
+        }
+        return _Nicotines;
+      }
+    }
+
     [InjectView(Resource.Id.rdNameField)]
     public EditText nameField;
 
@@ -48,14 +59,11 @@ namespace paujo.juze.android {
       targetNicField.Text = recipe.TargetNicotine.ToString();
       targetNicField.InputType = Android.Text.InputTypes.ClassNumber;
 
-      DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
       ArrayAdapter<Nicotine> nicAdapter = new ArrayAdapter<Nicotine>(Activity, Android.Resource.Layout.SimpleSpinnerDropDownItem,
-        helper.GetNicotines());
+        Nicotines);
       nicotineSpinner.Adapter = nicAdapter;
       nicotineSpinner.ItemSelected += delegate(Object caller, ItemSelectedEventArgs args) {
-        Console.WriteLine("Yer doin it, Peter!");
-        var nicHelper = new DatabaseHelper(Activity.ApplicationContext);
-        Nicotine nic = nicHelper.GetNicotines()[args.Position];
+        Nicotine nic = Nicotines[args.Position];
         recipe.Nicotine = nic;
       };
 
