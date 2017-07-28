@@ -46,7 +46,7 @@ namespace paujo.juze.android {
       nameField.Text = recipe.Name;
       targetNicField.Text = recipe.TargetNicotine.ToString();
       targetNicField.InputType = Android.Text.InputTypes.ClassNumber;
-      int pg = (int)(recipe.PG * 100);
+      int pg = recipe.PG;
       int vg = 100 - pg;
       pgSlider.Progress = pg;
       pgSlider.ProgressChanged += delegate {

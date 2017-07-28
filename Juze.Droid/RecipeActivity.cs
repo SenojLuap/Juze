@@ -21,7 +21,7 @@ namespace paujo.juze.android {
 
       Recipe testRec = new Recipe();
       testRec.Name = "Test Recipe";
-      testRec.PG = .70f;
+      testRec.PG = 70;
       testRec.TargetNicotine = 4;
 
       recFrag.recipe = testRec;

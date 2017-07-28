@@ -30,8 +30,20 @@ namespace paujo.juze.android {
     /// <param name="db">The database the table should be added to.</param>
     public void CreateNicotineTable(SQLiteDatabase db) {
       string cmd = $@"CREATE TABLE {NIC_TABLE_NAME} ({NIC_ID_COL} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-        $"{NIC_NAME_COL} TEXT, {NIC_VG_COL} REAL, {NIC_CONC_COL} INTEGER);";
+        $"{NIC_NAME_COL} TEXT, {NIC_VG_COL} TINYINT UNSIGNED, {NIC_CONC_COL} INTEGER);";
       db.ExecSQL(cmd);
+    }
+
+    /// <summary>
+    /// Removes the nicotine table from the database.
+    /// </summary>
+    /// <param name="db">The database to remove the table from.</param>
+    public void RemoveNicotineTable(SQLiteDatabase db) {
+      try {
+        db.ExecSQL($"DROP TABLE {NIC_TABLE_NAME};");
+      } catch (SQLiteAbortException ex) {
+        Console.WriteLine(ex.Message);
+      }
     }
 
     /// <summary>
@@ -104,7 +116,7 @@ namespace paujo.juze.android {
 
       res.ID = iter.GetInt(0);
       res.Name = iter.GetString(1);
-      res.VG = iter.GetFloat(2);
+      res.VG = (byte)iter.GetInt(2);
       res.Concentration = iter.GetInt(3);
 
       return res;

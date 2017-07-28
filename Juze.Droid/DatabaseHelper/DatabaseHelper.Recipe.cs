@@ -33,7 +33,7 @@ namespace paujo.juze.android {
       string cmd = $"CREATE TABLE {RECIPE_TABLE_NAME} (" +
         $"{RECIPE_ID_COL} INTEGER PRIMARY KEY AUTOINCREMENT, " +
         $"{RECIPE_NAME_COL} TEXT, " +
-        $"{RECIPE_VG_COL} REAL, " +
+        $"{RECIPE_VG_COL} TINYINT UNSIGNED, " +
         $"FOREIGN KEY ({RECIPE_NICOTINE_COL} REFERENCES {NIC_TABLE_NAME}({NIC_ID_COL}), " +
         $"{RECIPE_TARGET_NIC_COL} REAL);";
       db.ExecSQL(cmd);
@@ -139,11 +139,11 @@ namespace paujo.juze.android {
       res.Nicotine = resNic;
       res.ID = iter.GetInt(0);
       res.Name = iter.GetString(1);
-      res.VG = iter.GetFloat(2);
+      res.VG = (byte)iter.GetInt(2);
       res.TargetNicotine = iter.GetFloat(3);
       resNic.ID = iter.GetInt(4);
       resNic.Name = iter.GetString(5);
-      resNic.VG = iter.GetFloat(6);
+      resNic.VG = (byte)iter.GetInt(6);
       resNic.Concentration = iter.GetInt(7);
 
       return res;

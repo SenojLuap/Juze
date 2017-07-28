@@ -35,6 +35,18 @@ namespace paujo.juze.android {
     }
 
     /// <summary>
+    /// Remove the flavor table from the database.
+    /// </summary>
+    /// <param name="db">The database to remove the table from.</param>
+    public void RemoveFlavorTable(SQLiteDatabase db) {
+      try {
+        db.ExecSQL($"DROP TABLE {FLAVOR_TABLE_NAME};");
+      } catch (SQLiteAbortException ex) {
+        Console.WriteLine(ex.Message);
+      }
+    }
+
+    /// <summary>
     /// Add a new flavor to the flavor table.
     /// </summary>
     /// <param name="flavor">The flavor being added.</param>

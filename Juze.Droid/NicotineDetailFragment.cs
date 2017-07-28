@@ -66,7 +66,7 @@ namespace paujo.juze.android {
       Cheeseknife.Inject(this, res);
 
       nameField.Text = nicotine.Name;
-      int pg = (int)(nicotine.PG * 100);
+      int pg = nicotine.PG;
       int vg = 100 - pg;
       pgSlider.Progress = pg;
       pgSlider.ProgressChanged += delegate {
@@ -94,7 +94,7 @@ namespace paujo.juze.android {
     [InjectOnClick(Resource.Id.ndAcceptBtn)]
     public void OnAccept(object caller, EventArgs args) {
       nicotine.Name = nameField.Text;
-      nicotine.PG = (pgSlider.Progress / 100);
+      nicotine.PG = pgSlider.Progress;
       nicotine.Concentration = int.Parse(concField.Text);
 
       bool update = false;

@@ -7,19 +7,19 @@ namespace paujo.juze {
     /// <summary>
     /// Percentage of VG in the recipe.
     /// </summary>
-    public float VG {
+    public byte VG {
       get; set;
     }
 
     /// <summary>
     /// Percentage of PG in the recipe.
     /// </summary>
-    public float PG {
+    public byte PG {
       get {
-        return 1.0f - VG;
+        return (byte)(100 - VG);
       }
       set {
-        VG = 1.0f - value;
+        VG = (byte)(100 - value);
       }
     }
 
@@ -83,8 +83,8 @@ namespace paujo.juze {
         res.Flavors.Add(flavAmount);
       }
 
-      res.PG = (batchSize * PG) - pgVolume;
-      res.VG = (batchSize * VG) - vgVolume;
+      res.PG = (batchSize * (PG / 100f)) - pgVolume;
+      res.VG = (batchSize * (VG / 100f)) - vgVolume;
 
       if (byWeight) {
         res.PG *= Constants.PG_GRAVITY;

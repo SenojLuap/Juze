@@ -5,7 +5,13 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <Button
+  <Button
+      android:text="*Reset Database"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/mResetDataBaseBtn"
+      android:layout_gravity="center" />
+  <Button
         android:text="*List Flavors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,10 +35,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/mNicotineBtn"
         android:layout_gravity="center" />
-  <Button
-      android:text="*Recipe Stuff"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/mRecipeBtn"
-      android:layout_gravity="center" />
+    <Button
+        android:text="*Recipe Stuff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mRecipeBtn"
+        android:layout_gravity="center" />
 </LinearLayout>

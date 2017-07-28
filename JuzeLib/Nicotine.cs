@@ -8,19 +8,19 @@ namespace paujo.juze {
     /// <summary>
     /// Percentage of VG in the nicotine solution.
     /// </summary>
-    public float VG {
+    public int VG {
       get; set;
     }
 
     /// <summary>
     /// Percentage of PG in the nicotine solution.
     /// </summary>
-    public float PG {
+    public int PG {
       get {
-        return 1.0f - VG;
+        return 100 - VG;
       }
       set {
-        VG = 1.0f - value;
+        VG = 100 - value;
       }
     }
 
@@ -38,8 +38,8 @@ namespace paujo.juze {
       get {
         float nic = Concentration / Constants.NICOTINE_GRAVITY;
         float rest = 1.0f - nic;
-        float vg = rest * VG;
-        float pg = rest * PG;
+        float vg = rest * (VG/100.0f);
+        float pg = rest * (PG/100.0f);
         vg *= Constants.VG_GRAVITY;
         pg *= Constants.PG_GRAVITY;
         return (Concentration / 1000f) + vg + pg;

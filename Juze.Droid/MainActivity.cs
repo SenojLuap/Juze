@@ -51,7 +51,7 @@ namespace paujo.juze.android {
     }
 
     [InjectOnClick(Resource.Id.mDumpNicotineCountBtn)]
-    public void DumpNicotienClick(Object caller, EventArgs args) {
+    public void DumpNicotineClick(Object caller, EventArgs args) {
       IList<Nicotine> nicotines = GetAllNicotines();
       Toast.MakeText(ApplicationContext, "Count: " + nicotines.Count, ToastLength.Short).Show();
     }
@@ -67,10 +67,22 @@ namespace paujo.juze.android {
       StartActivity(nicIntent);
     }
 
+    /// <summary>
+    /// Start the recipe activity.
+    /// </summary>
     [InjectOnClick(Resource.Id.mRecipeBtn)]
     public void StartRecipeActivity(Object caller, EventArgs args) {
       Intent recIntent = new Intent(this, typeof(RecipeActivity));
       StartActivity(recIntent);
+    }
+
+    /// <summary>
+    /// Reset the database.
+    /// </summary>
+    [InjectOnClick(Resource.Id.mResetDataBaseBtn)]
+    public void ResetDatabase(Object caller, EventArgs args) {
+      DatabaseHelper helper = new DatabaseHelper(ApplicationContext);
+      helper.Reset();
     }
   }
 }

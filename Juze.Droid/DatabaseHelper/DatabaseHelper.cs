@@ -23,8 +23,33 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="db">The database being created.</param>
     public override void OnCreate(SQLiteDatabase db) {
+      CreateTables(db);
+    }
+
+    /// <summary>
+    /// Create all tables.
+    /// </summary>
+    /// <param name="db">The database to add the tables to.</param>
+    public void CreateTables(SQLiteDatabase db) {
       CreateFlavorTable(db);
       CreateNicotineTable(db);
+    }
+
+    /// <summary>
+    /// Remove all tables from the database.
+    /// </summary>
+    /// <param name="db">The database to remove the tables from.</param>
+    public void RemoveTables(SQLiteDatabase db) {
+      RemoveFlavorTable(db);
+      RemoveNicotineTable(db);
+    }
+
+    /// <summary>
+    /// Reset the database.
+    /// </summary>
+    public void Reset() {
+      RemoveTables(WritableDatabase);
+      CreateTables(WritableDatabase);
     }
 
     /// <summary>
