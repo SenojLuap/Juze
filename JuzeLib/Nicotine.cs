@@ -46,5 +46,11 @@ namespace paujo.juze {
       }
     }
 
+    /// <summary>
+    /// A string representation of the nicotine.
+    /// </summary>
+    public override string ToString() {
+      return Name + " (" + Concentration + " mg/mL)";
+    }
   }
 }

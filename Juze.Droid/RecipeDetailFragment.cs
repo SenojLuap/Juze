@@ -11,6 +11,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Com.Lilarcor.Cheeseknife;
+using static Android.Widget.AdapterView;
 
 namespace paujo.juze.android {
   public class RecipeDetailFragment : Android.Support.V4.App.Fragment {
@@ -46,6 +47,18 @@ namespace paujo.juze.android {
       nameField.Text = recipe.Name;
       targetNicField.Text = recipe.TargetNicotine.ToString();
       targetNicField.InputType = Android.Text.InputTypes.ClassNumber;
+
+      DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
+      ArrayAdapter<Nicotine> nicAdapter = new ArrayAdapter<Nicotine>(Activity, Android.Resource.Layout.SimpleSpinnerDropDownItem,
+        helper.GetNicotines());
+      nicotineSpinner.Adapter = nicAdapter;
+      nicotineSpinner.ItemSelected += delegate(Object caller, ItemSelectedEventArgs args) {
+        Console.WriteLine("Yer doin it, Peter!");
+        var nicHelper = new DatabaseHelper(Activity.ApplicationContext);
+        Nicotine nic = nicHelper.GetNicotines()[args.Position];
+        recipe.Nicotine = nic;
+      };
+
       int pg = recipe.PG;
       int vg = 100 - pg;
       pgSlider.Progress = pg;
