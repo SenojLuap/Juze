@@ -15,4 +15,8 @@
   <string name="rdNicotine">Nicotine</string>
   <string name="rdTargetNicotine">Target Nic.</string>
   <string name="rdPG">PG%/VG%</string>
+  <string name="CreateFlavor">Create Flavor</string>
+  <string name="CreateNicotine">Create Nicotine</string>
+  <string name="CreateRecipe">Create Recipe</string>
+  <string name="AddFlavor">Add Flavor</string>
 </resources>

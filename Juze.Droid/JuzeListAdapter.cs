@@ -31,6 +31,14 @@ namespace paujo.juze.android {
     public Stopwatch clickTimer;
 
     /// <summary>
+    /// Text to display for the 'create new item' row.
+    /// </summary>
+    public string CreateText {
+      get;
+      set;
+    }
+
+    /// <summary>
     /// Retreives a flavor, by index.
     /// </summary>
     /// <param name="position">The index of the flavor to retrieve.</param>
@@ -46,7 +54,7 @@ namespace paujo.juze.android {
     /// </summary>
     public override int Count {
       get {
-        return elements.Count;
+        return elements.Count + 1;
       }
     }
 
@@ -57,6 +65,13 @@ namespace paujo.juze.android {
     /// <param name="flavorList">The list of flavors to be represented.</param>
     public JuzeListAdapter(JuzeListFragment<T> context) : base() {
       this.context = context;
+      InitElements();
+    }
+
+    /// <summary>
+    /// Initialize the list of elements.
+    /// </summary>
+    public virtual void InitElements() {
       DatabaseHelper helper = new DatabaseHelper(context.Activity.ApplicationContext);
       if (typeof(T) == typeof(Flavor))
         this.elements = helper.GetFlavors().Cast<T>().ToList();
@@ -64,7 +79,6 @@ namespace paujo.juze.android {
         this.elements = helper.GetNicotines().Cast<T>().ToList();
       if (typeof(T) == typeof(Recipe))
         this.elements = helper.GetRecipes().Cast<T>().ToList();
-
     }
 
     /// <summary>
@@ -84,10 +98,20 @@ namespace paujo.juze.android {
     /// <param name="parent">The ListView requesting the view.</param>
     /// <returns>The new view to use for the flavor in the ListView.</returns>
     public override View GetView(int position, View convertView, ViewGroup parent) {
+      if (position == elements.Count) {
+        var create = context.Activity.LayoutInflater.Inflate(Resource.Layout.CreateRow, null);
+        TextView label = create.FindViewById<TextView>(Resource.Id.crText);
+        label.Text = CreateText;
+        label.Click += delegate {
+          context.CreateElement();
+        };
+        return create;
+      }
       View res = convertView;
-      if (res == null) {
+      if (res == null || position == elements.Count) {
         res = context.Activity.LayoutInflater.Inflate(Resource.Layout.SimpleRow, null);
       }
+
       JuzeNamedType element = elements[position];
       var labelBtn = res.FindViewById<Button>(Resource.Id.srText);
       labelBtn.Text = element.Name;

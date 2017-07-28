@@ -15,6 +15,15 @@ namespace paujo.juze.android {
   public class NicotineListFragment : JuzeListFragment<Nicotine> {
 
     /// <summary>
+    /// The text to display on the 'create item' row.
+    /// </summary>
+    public override string CreateText {
+      get {
+        return Resources.GetString(Resource.String.CreateNicotine);
+      }
+    }
+
+    /// <summary>
     /// Create a new nicotine.
     /// </summary>
     public override void CreateElement() {

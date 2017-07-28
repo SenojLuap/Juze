@@ -15,13 +15,22 @@ namespace paujo.juze.android {
   public abstract class JuzeListFragment<T> : Android.Support.V4.App.ListFragment where T : JuzeNamedType {
 
     /// <summary>
+    /// The text to display on the row to create a new element.
+    /// </summary>
+    public abstract string CreateText {
+      get;
+    }
+
+    /// <summary>
     /// Called on the creation of the fragment.
     /// </summary>
     /// <param name="savedInstance">The saved state of the fragment.</param>
     public override void OnCreate(Bundle savedInstance) {
       HasOptionsMenu = true;
       base.OnCreate(savedInstance);
-      ListAdapter = new JuzeListAdapter<T>(this);
+      var adapter = new JuzeListAdapter<T>(this);
+      adapter.CreateText = CreateText;
+      ListAdapter = adapter;
     }
 
     /// <summary>

@@ -17,6 +17,15 @@ namespace paujo.juze.android {
   public class FlavorListFragment : JuzeListFragment<Flavor> {
 
     /// <summary>
+    /// The text to display on the 'create item' row.
+    /// </summary>
+    public override string CreateText {
+      get {
+        return Resources.GetString(Resource.String.CreateFlavor);
+      }
+    }
+
+    /// <summary>
     /// Remove the flavor from the database.
     /// </summary>
     /// <param name="toRemove"></param>

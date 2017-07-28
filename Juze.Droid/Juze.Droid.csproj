@@ -115,6 +115,7 @@
     <AndroidResource Include="Resources\layout\RecipeActivityLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\CreateRow.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
