@@ -15,6 +15,15 @@ namespace paujo.juze.android {
   public abstract class JuzeListFragment<T> : Android.Support.V4.App.ListFragment where T : JuzeNamedType {
 
     /// <summary>
+    /// Should an 'create item' menu button be created.
+    /// </summary>
+    public virtual bool CreateAddMenu {
+      get {
+        return true;
+      }
+    }
+
+    /// <summary>
     /// The text to display on the row to create a new element.
     /// </summary>
     public abstract string CreateText {
@@ -26,11 +35,19 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="savedInstance">The saved state of the fragment.</param>
     public override void OnCreate(Bundle savedInstance) {
-      HasOptionsMenu = true;
+      HasOptionsMenu = CreateAddMenu;
       base.OnCreate(savedInstance);
+      ListAdapter = CreateAdapter();
+    }
+
+    /// <summary>
+    /// Create a new list adapter.
+    /// </summary>
+    /// <returns>The new list adapter.</returns>
+    public virtual JuzeListAdapter<T> CreateAdapter() {
       var adapter = new JuzeListAdapter<T>(this);
       adapter.CreateText = CreateText;
-      ListAdapter = adapter;
+      return adapter;
     }
 
     /// <summary>
@@ -40,8 +57,8 @@ namespace paujo.juze.android {
     /// <param name="inflater">Inflator to expand the menu.</param>
     public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater) {
       base.OnCreateOptionsMenu(menu, inflater);
-      inflater.Inflate(Resource.Menu.JuzeListMenu, menu);
-      var btn = menu.FindItem(Resource.Id.jlCreateElement);
+      if (CreateAddMenu)
+        inflater.Inflate(Resource.Menu.JuzeListMenu, menu);
     }
 
     /// <summary>
@@ -61,13 +78,13 @@ namespace paujo.juze.android {
     /// Update an element in the database.
     /// </summary>
     /// <param name="element">The element to update.</param>
-    public abstract void EditElement(JuzeBaseType element);
+    public abstract void EditElement(T element);
 
     /// <summary>
     /// Remove an element from the database.
     /// </summary>
     /// <param name="element">The element to remove.</param>
-    public abstract void RemoveElement(JuzeBaseType element);
+    public abstract void RemoveElement(T element);
 
     /// <summary>
     /// Create a new element.

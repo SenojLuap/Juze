@@ -112,7 +112,7 @@ namespace paujo.juze.android {
         res = context.Activity.LayoutInflater.Inflate(Resource.Layout.SimpleRow, null);
       }
 
-      JuzeNamedType element = elements[position];
+      T element = elements[position];
       var labelBtn = res.FindViewById<Button>(Resource.Id.srText);
       labelBtn.Text = element.Name;
       labelBtn.Click += delegate {
@@ -135,14 +135,7 @@ namespace paujo.juze.android {
     /// The list of flavors has changed. Update and redraw.
     /// </summary>
     public void Reset() {
-      DatabaseHelper helper = new DatabaseHelper(context.Activity.ApplicationContext);
-
-      if (typeof(T) == typeof(Flavor))
-        this.elements = helper.GetFlavors().Cast<T>().ToList();
-      if (typeof(T) == typeof(Nicotine))
-        this.elements = helper.GetNicotines().Cast<T>().ToList();
-      if (typeof(T) == typeof(Recipe))
-        this.elements = helper.GetRecipes().Cast<T>().ToList();
+      InitElements();
       NotifyDataSetChanged();
     }
 

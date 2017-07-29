@@ -29,13 +29,10 @@ namespace paujo.juze.android {
     /// Remove the flavor from the database.
     /// </summary>
     /// <param name="toRemove"></param>
-    public override void RemoveElement(JuzeBaseType toRemove) {
-      Flavor flavor = toRemove as Flavor;
-      if (flavor == null)
-        return;
-      Toast.MakeText(Activity.ApplicationContext, "Removed: " + flavor.Name, ToastLength.Short).Show();
+    public override void RemoveElement(Flavor toRemove) {
+      Toast.MakeText(Activity.ApplicationContext, "Removed: " + toRemove.Name, ToastLength.Short).Show();
       DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
-      helper.RemoveFlavor(flavor);
+      helper.RemoveFlavor(toRemove);
       Reset();
     }
 
@@ -43,13 +40,10 @@ namespace paujo.juze.android {
     /// Edit an existing flavor.
     /// </summary>
     /// <param name="toEdit">The flavor to edit.</param>
-    public override void EditElement(JuzeBaseType toEdit) {
-      Flavor flavor = toEdit as Flavor;
-      if (flavor == null)
-        return;
+    public override void EditElement(Flavor toEdit) {
       FlavorActivity parent = Activity as FlavorActivity;
       if (parent != null) {
-        parent.StartEditFlavor(flavor);
+        parent.StartEditFlavor(toEdit);
       }
     }
 

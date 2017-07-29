@@ -23,11 +23,15 @@ namespace paujo.juze.android {
       testRec.Name = "Test Recipe";
       testRec.PG = 70;
       testRec.TargetNicotine = 4;
+      testRec.Flavors = new List<RecipeItem>();
 
       recFrag.recipe = testRec;
 
+      RecipeItemListFragment recListFrag = new RecipeItemListFragment(testRec);
+
       var trans = SupportFragmentManager.BeginTransaction();
       trans.Add(Resource.Id.raFragmentView, recFrag, "detailFragment");
+      trans.Add(Resource.Id.raFragmentView, recListFrag, "listFragment");
       trans.Commit();
     }
   }

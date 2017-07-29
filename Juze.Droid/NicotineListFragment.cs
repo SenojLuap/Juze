@@ -40,26 +40,20 @@ namespace paujo.juze.android {
     /// Edit the specified nicotine.
     /// </summary>
     /// <param name="element">The nicotine to edit.</param>
-    public override void EditElement(JuzeBaseType element) {
-      Nicotine nicotine = element as Nicotine;
-      if (nicotine == null)
-        return;
+    public override void EditElement(Nicotine element) {
       NicotineActivity na = Activity as NicotineActivity;
       if (na != null)
-        na.StartEditNicotine(nicotine);
+        na.StartEditNicotine(element);
     }
 
     /// <summary>
     /// Remove a nicotine from the list.
     /// </summary>
     /// <param name="element">The nicotine to be removed.</param>
-    public override void RemoveElement(JuzeBaseType element) {
-      Nicotine nicotine = element as Nicotine;
-      if (nicotine == null)
-        return;
+    public override void RemoveElement(Nicotine element) {
       DatabaseHelper helper = new DatabaseHelper(Activity.ApplicationContext);
-      helper.RemoveNicotine(nicotine);
-      Toast.MakeText(Activity, "Removed: " + nicotine.Name, ToastLength.Short).Show();
+      helper.RemoveNicotine(element);
+      Toast.MakeText(Activity, "Removed: " + element.Name, ToastLength.Short).Show();
       Reset();
     }
   }

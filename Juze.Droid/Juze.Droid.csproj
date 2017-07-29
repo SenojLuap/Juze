@@ -85,6 +85,8 @@
     <Compile Include="NicotineListFragment.cs" />
     <Compile Include="RecipeActivity.cs" />
     <Compile Include="RecipeDetailFragment.cs" />
+    <Compile Include="RecipeItemListAdapter.cs" />
+    <Compile Include="RecipeItemListFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
