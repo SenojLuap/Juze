@@ -108,7 +108,7 @@ namespace paujo.juze.android {
         return create;
       }
       View res = convertView;
-      if (res == null || position == elements.Count) {
+      if (res == null || res.FindViewById<Button>(Resource.Id.srText) == null) {
         res = context.Activity.LayoutInflater.Inflate(Resource.Layout.SimpleRow, null);
       }
 
