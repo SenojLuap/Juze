@@ -19,8 +19,18 @@ namespace paujo.juze.android {
     /// <summary>
     /// The recipe being edited.
     /// </summary>
-    public Recipe recipe;
+    public Recipe Recipe {
+      get {
+        RecipeActivity act = Activity as RecipeActivity;
+        if (act != null)
+          return act.ActiveRecipe;
+        return null;
+      }
+    }
 
+    /// <summary>
+    /// The list of all nicotines available.
+    /// </summary>
     public IList<Nicotine> _Nicotines;
     public IList<Nicotine> Nicotines {
       get {
@@ -32,31 +42,57 @@ namespace paujo.juze.android {
       }
     }
 
+    /// <summary>
+    /// Field for name of the recipe.
+    /// </summary>
     [InjectView(Resource.Id.rdNameField)]
     public EditText nameField;
 
+    /// <summary>
+    /// Drop-down for the used nicotine.
+    /// </summary>
     [InjectView(Resource.Id.rdNicotineField)]
     public Spinner nicotineSpinner;
 
+    /// <summary>
+    /// Field for the target nicotine content.
+    /// </summary>
     [InjectView(Resource.Id.rdTargetNicField)]
     public EditText targetNicField;
 
+    /// <summary>
+    /// Slider for the PG/VG ration.
+    /// </summary>
     [InjectView(Resource.Id.rdPGSlider)]
     public SeekBar pgSlider;
 
+    /// <summary>
+    /// The label for the PG/VG slider.
+    /// </summary>
     [InjectView(Resource.Id.rdPGLabel)]
     public TextView pgLabel;
 
+    /// <summary>
+    /// On creation of the fragment.
+    /// </summary>
+    /// <param name="savedInstanceState">The previous state of the fragment.</param>
     public override void OnCreate(Bundle savedInstanceState) {
       base.OnCreate(savedInstanceState);
     }
 
+    /// <summary>
+    /// Create the view for the fragment.
+    /// </summary>
+    /// <param name="inflater">The inflater to use to inflate an XML layout.</param>
+    /// <param name="container">The container of the resulting view.</param>
+    /// <param name="savedInstanceState">No clue.</param>
+    /// <returns>The created view.</returns>
     public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       var res = inflater.Inflate(Resource.Layout.RecipeDetailLayout, container, false);
       Cheeseknife.Inject(this, res);
 
-      nameField.Text = recipe.Name;
-      targetNicField.Text = recipe.TargetNicotine.ToString();
+      nameField.Text = Recipe.Name;
+      targetNicField.Text = Recipe.TargetNicotine.ToString();
       targetNicField.InputType = Android.Text.InputTypes.ClassNumber;
 
       ArrayAdapter<Nicotine> nicAdapter = new ArrayAdapter<Nicotine>(Activity, Android.Resource.Layout.SimpleSpinnerDropDownItem,
@@ -64,10 +100,10 @@ namespace paujo.juze.android {
       nicotineSpinner.Adapter = nicAdapter;
       nicotineSpinner.ItemSelected += delegate(Object caller, ItemSelectedEventArgs args) {
         Nicotine nic = Nicotines[args.Position];
-        recipe.Nicotine = nic;
+        Recipe.Nicotine = nic;
       };
 
-      int pg = recipe.PG;
+      int pg = Recipe.PG;
       int vg = 100 - pg;
       pgSlider.Progress = pg;
       pgSlider.ProgressChanged += delegate {

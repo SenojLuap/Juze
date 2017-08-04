@@ -10,6 +10,7 @@
         android:columnCount="2"
         android:padding="3dp">
         <TextView
+          android:id="@+id/rdRecipeName"
             android:text="@string/rdRecipeName"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:labelFor="@+id/rdNameField" />

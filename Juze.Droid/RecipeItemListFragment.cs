@@ -36,15 +36,12 @@ namespace paujo.juze.android {
     /// The recipe to list items for.
     /// </summary>
     public Recipe Recipe {
-      get; set;
-    }
-
-    /// <summary>
-    /// cTor.
-    /// </summary>
-    /// <param name="recipe">The recipe to list items for.</param>
-    public RecipeItemListFragment(Recipe recipe) : base() {
-      Recipe = recipe;
+      get {
+        RecipeActivity act = Activity as RecipeActivity;
+        if (act != null)
+          return act.ActiveRecipe;
+        return null;
+      }
     }
 
     /// <summary>
@@ -59,7 +56,9 @@ namespace paujo.juze.android {
     /// Create a new recipe item.
     /// </summary>
     public override void CreateElement() {
-      throw new NotImplementedException();
+      RecipeActivity act = Activity as RecipeActivity;
+      if (act != null)
+        act.SelectFlavor();
     }
 
     /// <summary>
@@ -67,7 +66,9 @@ namespace paujo.juze.android {
     /// </summary>
     /// <param name="element"></param>
     public override void EditElement(RecipeItem element) {
-      throw new NotImplementedException();
+      RecipeActivity act = Activity as RecipeActivity;
+      if (act != null)
+        act.SelectFlavor();
     }
 
     /// <summary>

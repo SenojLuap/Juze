@@ -13,13 +13,6 @@ namespace paujo.juze {
     }
 
     /// <summary>
-    /// The recipe that owns the item.
-    /// </summary>
-    public Recipe Owner {
-      get; set;
-    }
-
-    /// <summary>
     /// The percentage amount of flavor in the recipe.
     /// </summary>
     public float Percentage {

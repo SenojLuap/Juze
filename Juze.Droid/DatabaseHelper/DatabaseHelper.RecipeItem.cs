@@ -37,11 +37,14 @@ namespace paujo.juze.android {
     public void CreateRecipeItemTable(SQLiteDatabase db) {
       string cmd = $"CREATE TABLE {RI_TABLE_NAME} (" +
           $"{RI_ID_COL} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-          $"FOREIGN KEY({RI_FLAVOR_COL}) REFERENCES {FLAVOR_TABLE_NAME}({FLAVOR_ID_COL}), " +
-          $"{RI_PERCENTAGE_COL} REAL);";
+          $"{RI_FLAVOR_COL} INTEGER, " +
+          $"{RI_PERCENTAGE_COL} REAL, " +
+          $"FOREIGN KEY({RI_FLAVOR_COL}) REFERENCES {FLAVOR_TABLE_NAME}({FLAVOR_ID_COL}));";
       db.ExecSQL(cmd);
 
       cmd = $"CREATE TABLE {RECIPE_RI_TABLE_NAME} (" +
+        $"{RECIPE_RI_RECIPE_ID} INTEGER, " +
+        $"{RECIPE_RI_RI_ID} INTEGER, " +
         $"FOREIGN KEY({RECIPE_RI_RECIPE_ID}) REFERENCES {RECIPE_TABLE_NAME}({RECIPE_ID_COL}), " +
         $"FOREIGN KEY({RECIPE_RI_RI_ID}) REFERENCES {RI_TABLE_NAME}({RI_ID_COL}));";
       db.ExecSQL(cmd);

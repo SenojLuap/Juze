@@ -33,6 +33,8 @@ namespace paujo.juze.android {
     public void CreateTables(SQLiteDatabase db) {
       CreateFlavorTable(db);
       CreateNicotineTable(db);
+      CreateRecipeTable(db);
+      CreateRecipeItemTable(db);
     }
 
     /// <summary>

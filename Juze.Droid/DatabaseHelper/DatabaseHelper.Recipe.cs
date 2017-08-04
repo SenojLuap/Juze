@@ -34,8 +34,9 @@ namespace paujo.juze.android {
         $"{RECIPE_ID_COL} INTEGER PRIMARY KEY AUTOINCREMENT, " +
         $"{RECIPE_NAME_COL} TEXT, " +
         $"{RECIPE_VG_COL} TINYINT UNSIGNED, " +
-        $"FOREIGN KEY ({RECIPE_NICOTINE_COL} REFERENCES {NIC_TABLE_NAME}({NIC_ID_COL}), " +
-        $"{RECIPE_TARGET_NIC_COL} REAL);";
+        $"{RECIPE_NICOTINE_COL} INTEGER, " +
+        $"{RECIPE_TARGET_NIC_COL} REAL, " +
+        $"FOREIGN KEY ({RECIPE_NICOTINE_COL}) REFERENCES {NIC_TABLE_NAME}({NIC_ID_COL}));";
       db.ExecSQL(cmd);
     }
 
