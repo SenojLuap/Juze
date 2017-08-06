@@ -34,7 +34,8 @@ namespace paujo.juze.android {
       Recipe testRec = new Recipe();
       testRec.Name = "Test Recipe";
       testRec.PG = 70;
-      testRec.TargetNicotine = 4;
+      testRec.TargetNicotine = 3;
+      testRec.BatchSize = 30;
       testRec.Flavors = new List<RecipeItem>();
       ActiveRecipe = testRec;
 

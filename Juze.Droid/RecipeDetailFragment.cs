@@ -61,6 +61,12 @@ namespace paujo.juze.android {
     public EditText targetNicField;
 
     /// <summary>
+    /// Field for batch size.
+    /// </summary>
+    [InjectView(Resource.Id.rdBatchSizeField)]
+    public EditText batchSizeField;
+
+    /// <summary>
     /// Slider for the PG/VG ration.
     /// </summary>
     [InjectView(Resource.Id.rdPGSlider)]
@@ -93,7 +99,7 @@ namespace paujo.juze.android {
 
       nameField.Text = Recipe.Name;
       targetNicField.Text = Recipe.TargetNicotine.ToString();
-      targetNicField.InputType = Android.Text.InputTypes.ClassNumber;
+      batchSizeField.Text = Recipe.BatchSize.ToString();
 
       ArrayAdapter<Nicotine> nicAdapter = new ArrayAdapter<Nicotine>(Activity, Android.Resource.Layout.SimpleSpinnerDropDownItem,
         Nicotines);

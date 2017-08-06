@@ -19,4 +19,5 @@
   <string name="CreateNicotine">Create Nicotine</string>
   <string name="CreateRecipe">Create Recipe</string>
   <string name="AddFlavor">Add Flavor</string>
+  <string name="rdBatchSize">Batch Size</string>
 </resources>

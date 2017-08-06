@@ -30,6 +30,15 @@
         android:labelFor="@+id/rdTargetNicField"/>
       <EditText
         android:id="@+id/rdTargetNicField"
+            android:inputType="number"
+        android:layout_columnWeight="1"/>
+      <TextView
+        android:text="@string/rdBatchSize"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:labelFor="@+id/rdBatchSizeField"/>
+      <EditText
+        android:id="@+id/rdBatchSizeField"
+            android:inputType="number"
         android:layout_columnWeight="1"/>
       <TextView
         android:text="@string/rdPG"
