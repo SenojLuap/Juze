@@ -10,7 +10,7 @@
   <string name="CancelFlavor">Cancel</string>
   <string name="NicName">Name</string>
   <string name="NicPG">PG% / VG%</string>
-  <string name="NicConc">mg/mL</string>
+  <string name="NicConc">Conc.</string>
   <string name="rdRecipeName">Name</string>
   <string name="rdNicotine">Nicotine</string>
   <string name="rdTargetNicotine">Target Nic.</string>
