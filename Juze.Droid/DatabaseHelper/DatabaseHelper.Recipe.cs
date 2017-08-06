@@ -22,6 +22,7 @@ namespace paujo.juze.android {
     public const string RECIPE_ID_COL = "ID";
     public const string RECIPE_NAME_COL = "NAME";
     public const string RECIPE_VG_COL = "VG";
+    public const string RECIPE_BATCHSIZE_COL = "BATCHSIZE";
     public const string RECIPE_NICOTINE_COL = "NICOTINE_ID";
     public const string RECIPE_TARGET_NIC_COL = "TARGET_NICOTINE";
 
@@ -35,6 +36,7 @@ namespace paujo.juze.android {
         $"{RECIPE_NAME_COL} TEXT, " +
         $"{RECIPE_VG_COL} TINYINT UNSIGNED, " +
         $"{RECIPE_NICOTINE_COL} INTEGER, " +
+        $"{RECIPE_BATCHSIZE_COL} INTEGER, " +
         $"{RECIPE_TARGET_NIC_COL} REAL, " +
         $"FOREIGN KEY ({RECIPE_NICOTINE_COL}) REFERENCES {NIC_TABLE_NAME}({NIC_ID_COL}));";
       db.ExecSQL(cmd);
@@ -46,8 +48,8 @@ namespace paujo.juze.android {
     /// <param name="recipe">The recipe to add.</param>
     public void PutRecipe(Recipe recipe) {
       string cmd = $"INSERT INTO {RECIPE_TABLE_NAME} ({RECIPE_NAME_COL}, {RECIPE_VG_COL}, " +
-        $"{RECIPE_NICOTINE_COL}, {RECIPE_TARGET_NIC_COL}) " +
-        $"VALUES (\"{recipe.Name}\", {recipe.VG}, {recipe.Nicotine.ID}, {recipe.TargetNicotine});";
+        $"{RECIPE_NICOTINE_COL}, {RECIPE_BATCHSIZE_COL}, {RECIPE_TARGET_NIC_COL}) " +
+        $"VALUES (\"{recipe.Name}\", {recipe.VG}, {recipe.Nicotine.ID}, {recipe.BatchSize}, {recipe.TargetNicotine});";
       try {
         SQLiteDatabase db = WritableDatabase;
         db.ExecSQL(cmd);
@@ -67,7 +69,8 @@ namespace paujo.juze.android {
     public void UpdateRecipe(Recipe recipe) {
       string cmd = $"UPDATE {RECIPE_TABLE_NAME} SET {RECIPE_NAME_COL}=\"{recipe.Name}\", " +
         $"{RECIPE_VG_COL}={recipe.VG}, {RECIPE_NICOTINE_COL}={recipe.Nicotine.ID}, " +
-        $"{RECIPE_TABLE_NAME}={recipe.TargetNicotine} " +
+        $"{RECIPE_BATCHSIZE_COL}={recipe.BatchSize}, " +
+        $"{RECIPE_TARGET_NIC_COL}={recipe.TargetNicotine} " +
         $"WHERE {RECIPE_ID_COL}={recipe.ID};";
       try {
         SQLiteDatabase db = WritableDatabase;
@@ -106,7 +109,7 @@ namespace paujo.juze.android {
 
       StringBuilder cmd = new StringBuilder();
       cmd.Append($"SELECT ");
-      foreach (var field in new string[] {RECIPE_ID_COL, RECIPE_NAME_COL, RECIPE_VG_COL, RECIPE_TARGET_NIC_COL })
+      foreach (var field in new string[] {RECIPE_ID_COL, RECIPE_NAME_COL, RECIPE_VG_COL, RECIPE_BATCHSIZE_COL, RECIPE_TARGET_NIC_COL })
         cmd.Append(RECIPE_TABLE_NAME + '.' + field + ", ");
       foreach (var field in new string[] { NIC_ID_COL, NIC_NAME_COL, NIC_VG_COL, NIC_CONC_COL })
         cmd.Append(NIC_TABLE_NAME + '.' + field + ", ");
@@ -141,11 +144,12 @@ namespace paujo.juze.android {
       res.ID = iter.GetInt(0);
       res.Name = iter.GetString(1);
       res.VG = (byte)iter.GetInt(2);
-      res.TargetNicotine = iter.GetFloat(3);
-      resNic.ID = iter.GetInt(4);
-      resNic.Name = iter.GetString(5);
-      resNic.VG = (byte)iter.GetInt(6);
-      resNic.Concentration = iter.GetInt(7);
+      res.BatchSize = iter.GetInt(3);
+      res.TargetNicotine = iter.GetFloat(4);
+      resNic.ID = iter.GetInt(5);
+      resNic.Name = iter.GetString(6);
+      resNic.VG = (byte)iter.GetInt(7);
+      resNic.Concentration = iter.GetInt(8);
 
       return res;
     }

@@ -24,6 +24,13 @@ namespace paujo.juze {
     }
 
     /// <summary>
+    /// Batch size, in mL.
+    /// </summary>
+    public int BatchSize {
+      get; set;
+    }
+
+    /// <summary>
     /// Nicotine solution used.
     /// </summary>
     public Nicotine Nicotine {
@@ -49,7 +56,7 @@ namespace paujo.juze {
     /// </summary>
     /// <param name="batchSize">The desired size of the brew, in mL</param>
     /// <returns>The finalized recipe, or null if the recipe isn't brewable.</returns>
-    public FinalRecipe GetFinalRecipe(float batchSize, bool byWeight) {
+    public FinalRecipe GetFinalRecipe(bool byWeight) {
 
       if (Nicotine.Concentration < TargetNicotine) {
         // Impossible to brew.
@@ -62,7 +69,7 @@ namespace paujo.juze {
       float pgVolume = 0.0f;
       float vgVolume = 0.0f;
 
-      res.Nicotine = TargetNicotine * batchSize / Nicotine.Concentration;
+      res.Nicotine = TargetNicotine * BatchSize / Nicotine.Concentration;
       pgVolume += res.Nicotine * Nicotine.PG;
       vgVolume += res.Nicotine * Nicotine.VG;
 
@@ -71,7 +78,7 @@ namespace paujo.juze {
 
       res.Flavors = new List<float>();
       foreach (var flavor in Flavors) {
-        float flavAmount = flavor.Percentage * batchSize;
+        float flavAmount = flavor.Percentage * BatchSize;
 
         if (flavor.Flavor.PG)
           pgVolume += flavAmount;
@@ -83,8 +90,8 @@ namespace paujo.juze {
         res.Flavors.Add(flavAmount);
       }
 
-      res.PG = (batchSize * (PG / 100f)) - pgVolume;
-      res.VG = (batchSize * (VG / 100f)) - vgVolume;
+      res.PG = (BatchSize * (PG / 100f)) - pgVolume;
+      res.VG = (BatchSize * (VG / 100f)) - vgVolume;
 
       if (byWeight) {
         res.PG *= Constants.PG_GRAVITY;
