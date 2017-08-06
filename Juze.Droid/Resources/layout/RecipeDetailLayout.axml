@@ -7,7 +7,7 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="2"
+        android:columnCount="3"
         android:padding="3dp">
         <TextView
           android:id="@+id/rdRecipeName"
@@ -16,14 +16,16 @@
             android:labelFor="@+id/rdNameField" />
         <EditText
             android:id="@+id/rdNameField"
-            android:layout_columnWeight="1" />
+            android:layout_columnWeight="1"
+            android:layout_columnSpan="2"/>
         <TextView
             android:text="@string/rdNicotine"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:labelFor="@+id/rdNicotineField" />
         <Spinner
             android:layout_columnWeight="1"
-            android:id="@+id/rdNicotineField" />
+            android:id="@+id/rdNicotineField"
+            android:layout_columnSpan="2"/>
       <TextView
         android:text="@string/rdTargetNicotine"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -31,7 +33,11 @@
       <EditText
         android:id="@+id/rdTargetNicField"
             android:inputType="number"
-        android:layout_columnWeight="1"/>
+        android:layout_columnWeight="1"
+        android:layout_columnSpan="1"/>
+      <TextView
+        android:text="mg/mL"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
       <TextView
         android:text="@string/rdBatchSize"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -39,22 +45,26 @@
       <EditText
         android:id="@+id/rdBatchSizeField"
             android:inputType="number"
-        android:layout_columnWeight="1"/>
+        android:layout_columnWeight="1"
+        android:layout_columnSpan="1"/>
+      <TextView
+        android:text="mL"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
       <TextView
         android:text="@string/rdPG"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:labelFor="@+id/rdPGSlider"
-        android:layout_columnSpan="2"
+        android:layout_columnSpan="3"
         android:layout_gravity="center"/>
       <SeekBar
         android:id="@+id/rdPGSlider"
-        android:layout_columnSpan="2"
+        android:layout_columnSpan="3"
         android:layout_width="match_parent"
         android:max="100"
         android:layout_gravity="center"/>
       <TextView
         android:id="@+id/rdPGLabel"
-        android:layout_columnSpan="2"
+        android:layout_columnSpan="3"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_gravity="center"/>
     </GridLayout>
