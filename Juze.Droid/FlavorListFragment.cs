@@ -53,7 +53,7 @@ namespace paujo.juze.android {
     public override void CreateElement() {
       Flavor newFlavor = new Flavor();
       newFlavor.ID = -1;
-      newFlavor.Name = GetString(Resource.String.DefaultFlavorName);
+//      newFlavor.Name = GetString(Resource.String.DefaultFlavorName);
       FlavorActivity parent = Activity as FlavorActivity;
       if (parent != null)
         parent.StartEditFlavor(newFlavor);

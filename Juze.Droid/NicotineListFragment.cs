@@ -29,7 +29,7 @@ namespace paujo.juze.android {
     public override void CreateElement() {
       Nicotine newNic = new Nicotine();
       newNic.ID = -1;
-      newNic.Name = GetString(Resource.String.DefaultNicotineName);
+      //newNic.Name = GetString(Resource.String.DefaultNicotineName);
       NicotineActivity na = Activity as NicotineActivity;
       if (na != null) {
         na.StartEditNicotine(newNic);

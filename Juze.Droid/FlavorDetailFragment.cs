@@ -68,6 +68,7 @@ namespace paujo.juze.android {
       Cheeseknife.Inject(this, res);
 
       nameField.Text = flavor.Name;
+      nameField.Hint = "< Enter Flavor Name >";
       pgBtn.Checked = flavor.PG;
       recPercField.Text = (flavor.RecommendedPercentage * 100.0f).ToString();
       return res;

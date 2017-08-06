@@ -66,6 +66,7 @@ namespace paujo.juze.android {
       Cheeseknife.Inject(this, res);
 
       nameField.Text = nicotine.Name;
+      nameField.Hint = "< Enter Nicotine Name >";
       int pg = nicotine.PG;
       int vg = 100 - pg;
       pgSlider.Progress = pg;
@@ -110,6 +111,11 @@ namespace paujo.juze.android {
       else
         helper.PutNicotine(nicotine);
 
+      End();
+    }
+
+    [InjectOnClick(Resource.Id.ndCancelBtn)]
+    public void OnCancel(object caller, EventArgs args) {
       End();
     }
 
